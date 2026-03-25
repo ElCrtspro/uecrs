@@ -1,0 +1,1489 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>L'Europe, c'est quoi ? 🇪🇺</title>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;800&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--blue:#003F87;--yellow:#FFD700;--sky:#4FC3F7;--coral:#FF6B6B;--mint:#4DD9AC;--purple:#9B59B6;--orange:#FF8C42;--bg:#F0F4FF;--card:#fff;--text:#1a1a2e;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Nunito',sans-serif;background:#ffffff;color:var(--text);min-height:100vh;overflow:hidden;}
+.stars{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0;background:radial-gradient(ellipse at 20% 10%,#cce0ff44 0%,transparent 60%),radial-gradient(ellipse at 80% 90%,#ffe08244 0%,transparent 60%);}
+
+/* ─── EU FLAG INSIDE CARDS ─── */
+.eu-flag-card{position:absolute;inset:0;pointer-events:none;z-index:0;border-radius:24px;overflow:hidden;opacity:.1;}
+#progress-bar{position:fixed;top:0;left:0;height:5px;background:linear-gradient(90deg,var(--yellow),var(--coral),var(--sky));transition:width .5s ease;z-index:100;}
+#slide-counter{position:fixed;top:14px;right:20px;font-family:'Baloo 2',cursive;font-weight:800;font-size:14px;color:var(--blue);background:var(--yellow);padding:3px 12px;border-radius:20px;z-index:100;box-shadow:0 2px 8px rgba(0,0,0,.15);}
+#stars-display{position:fixed;top:14px;left:20px;font-size:18px;z-index:100;background:white;padding:3px 12px;border-radius:20px;box-shadow:0 2px 8px rgba(0,0,0,.12);transition:transform .2s;}
+#app{position:relative;z-index:1;display:flex;align-items:center;justify-content:center;min-height:100vh;padding:60px 20px 20px;}
+.slide{display:none;width:100%;max-width:800px;animation:slideIn .45s cubic-bezier(.34,1.56,.64,1);}
+.slide.active{display:block;}
+@keyframes slideIn{from{opacity:0;transform:translateY(30px) scale(.96);}to{opacity:1;transform:translateY(0) scale(1);}}
+.card{background:rgba(255,255,255,0.97);border-radius:24px;padding:28px 36px;box-shadow:0 8px 40px rgba(0,63,135,.12),0 2px 8px rgba(0,0,0,.06);position:relative;overflow:hidden;max-height:90vh;overflow-y:auto;}
+.card::after{
+  content:'';
+  position:absolute;
+  top:0;left:0;right:0;bottom:0;
+  pointer-events:none;
+  z-index:0;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 900 600'%3E%3Crect width='900' height='600' fill='%23003F87'/%3E%3Cdefs%3E%3Cpolygon id='s' fill='%23FFD700' points='0,-28 6.6,-9 26.6,-9 11,3.4 17,22.5 0,11 -17,22.5 -11,3.4 -26.6,-9 -6.6,-9'/%3E%3C/defs%3E%3Cuse href='%23s' transform='translate(450,150)'/%3E%3Cuse href='%23s' transform='translate(525,170)'/%3E%3Cuse href='%23s' transform='translate(580,225)'/%3E%3Cuse href='%23s' transform='translate(600,300)'/%3E%3Cuse href='%23s' transform='translate(580,375)'/%3E%3Cuse href='%23s' transform='translate(525,430)'/%3E%3Cuse href='%23s' transform='translate(450,450)'/%3E%3Cuse href='%23s' transform='translate(375,430)'/%3E%3Cuse href='%23s' transform='translate(320,375)'/%3E%3Cuse href='%23s' transform='translate(300,300)'/%3E%3Cuse href='%23s' transform='translate(320,225)'/%3E%3Cuse href='%23s' transform='translate(375,170)'/%3E%3C/svg%3E");
+  background-size:cover;
+  background-position:center;
+  opacity:0.10;
+}
+.card::-webkit-scrollbar{width:4px;}.card::-webkit-scrollbar-thumb{background:#ccc;border-radius:4px;}
+.card::before{content:'';position:absolute;top:0;left:0;right:0;height:6px;background:linear-gradient(90deg,var(--blue),var(--sky),var(--mint));z-index:1;}
+.card > *{position:relative;z-index:1;}
+.tag{display:inline-block;font-family:'Baloo 2',cursive;font-weight:600;font-size:12px;letter-spacing:.08em;text-transform:uppercase;padding:4px 14px;border-radius:20px;margin-bottom:12px;}
+h1{font-family:'Baloo 2',cursive;font-weight:800;font-size:clamp(24px,5vw,38px);line-height:1.2;margin-bottom:12px;color:var(--blue);}
+h2{font-family:'Baloo 2',cursive;font-weight:800;font-size:clamp(18px,4vw,27px);margin-bottom:8px;color:var(--blue);}
+.emoji-big{font-size:52px;display:block;margin-bottom:12px;}
+p{font-size:15px;line-height:1.65;color:#333;margin-bottom:8px;}
+.highlight{background:linear-gradient(120deg,#FFD70044,#FFD70088);padding:2px 6px;border-radius:6px;font-weight:700;}
+.nav-row{display:flex;gap:10px;margin-top:20px;justify-content:space-between;align-items:center;flex-shrink:0;}
+.btn{font-family:'Baloo 2',cursive;font-weight:700;font-size:15px;padding:10px 22px;border-radius:50px;border:none;cursor:pointer;transition:transform .15s,box-shadow .15s;box-shadow:0 4px 12px rgba(0,0,0,.15);}
+.btn:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(0,0,0,.2);}
+.btn:active{transform:scale(.97);}
+.btn-primary{background:var(--blue);color:white;}
+.btn-secondary{background:var(--yellow);color:var(--blue);}
+.btn-ghost{background:#eee;color:#555;}
+
+/* ─── FLIP CARDS ─── */
+.inst-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin:12px 0;}
+.inst-card{border-radius:16px;padding:14px;cursor:pointer;transition:transform .2s,box-shadow .2s;border:3px solid transparent;}
+.inst-card:hover{transform:translateY(-3px);box-shadow:0 6px 20px rgba(0,0,0,.1);}
+.inst-card.revealed{border-color:var(--mint)!important;}
+.inst-card h3{font-family:'Baloo 2',cursive;font-weight:700;font-size:13px;margin-bottom:4px;}
+.inst-card p{font-size:12px;line-height:1.5;color:#444;display:none;margin:0;}
+.inst-card.revealed p{display:block;animation:fadeIn .4s ease;}
+.inst-card .reveal-hint{font-size:11px;color:#999;margin-top:4px;}
+.inst-card.revealed .reveal-hint{display:none;}
+@keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
+
+/* ─── QUIZ ─── */
+.quiz-options{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:12px 0;}
+.quiz-btn{font-family:'Nunito',sans-serif;font-weight:700;font-size:14px;padding:11px 13px;border-radius:14px;border:3px solid #e0e0e0;background:white;cursor:pointer;text-align:left;transition:all .2s;line-height:1.4;}
+.quiz-btn:hover:not(:disabled){border-color:var(--sky);background:#f0f9ff;}
+.quiz-btn.correct{border-color:var(--mint);background:#e8fff6;color:#1a7a5e;}
+.quiz-btn.wrong{border-color:var(--coral);background:#fff0f0;color:#c0392b;}
+.quiz-btn:disabled{cursor:default;}
+.feedback{margin-top:10px;padding:10px 14px;border-radius:14px;font-weight:700;font-size:14px;display:none;}
+.feedback.show{display:block;animation:fadeIn .3s ease;}
+.feedback.good{background:#e8fff6;color:#1a7a5e;border:2px solid var(--mint);}
+.feedback.bad{background:#fff0f0;color:#c0392b;border:2px solid var(--coral);}
+
+/* ─── TIMELINE ─── */
+.timeline{margin:12px 0;}
+.tl-item{display:flex;gap:10px;align-items:flex-start;margin-bottom:10px;opacity:0;transform:translateX(-20px);transition:all .4s ease;}
+.tl-item.visible{opacity:1;transform:translateX(0);}
+.tl-dot{width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0;}
+.tl-content strong{font-family:'Baloo 2',cursive;font-size:13px;display:block;}
+.tl-content span{font-size:12px;color:#555;}
+
+/* ─── MATCHING ─── */
+.match-container{display:flex;gap:12px;margin:12px 0;}
+.match-col{flex:1;display:flex;flex-direction:column;gap:7px;}
+.match-item{padding:9px 12px;border-radius:12px;border:3px solid #e0e0e0;font-weight:700;font-size:12px;cursor:pointer;text-align:center;transition:all .2s;background:white;}
+.match-item:hover{transform:scale(1.03);}
+.match-item.selected{border-color:var(--sky);background:#e8f4ff;}
+.match-item.matched{border-color:var(--mint);background:#e8fff6;cursor:default;}
+.match-item.wrong-flash{border-color:var(--coral);background:#fff0f0;animation:shake .3s ease;}
+@keyframes shake{0%,100%{transform:translateX(0);}25%{transform:translateX(-6px);}75%{transform:translateX(6px);}}
+
+/* ─── SCORE ─── */
+.score-circle{width:100px;height:100px;border-radius:50%;background:linear-gradient(135deg,var(--blue),var(--sky));display:flex;flex-direction:column;align-items:center;justify-content:center;margin:12px auto;box-shadow:0 8px 32px rgba(0,63,135,.3);color:white;}
+.score-circle .score-num{font-family:'Baloo 2',cursive;font-size:32px;font-weight:800;line-height:1;}
+.score-circle .score-label{font-size:11px;opacity:.85;}
+.confetti-piece{position:fixed;width:10px;height:10px;pointer-events:none;animation:confettiFall linear forwards;z-index:1000;}
+@keyframes confettiFall{0%{transform:translateY(-20px) rotate(0deg);opacity:1;}100%{transform:translateY(110vh) rotate(720deg);opacity:0;}}
+
+/* ─── DICE ─── */
+.dice-container{text-align:center;margin:10px 0;}
+.dice{width:70px;height:70px;border-radius:14px;background:white;border:3px solid #e0e0e0;display:inline-flex;align-items:center;justify-content:center;font-size:42px;box-shadow:0 4px 16px rgba(0,0,0,.12);cursor:pointer;user-select:none;}
+.dice.rolling{animation:diceRoll .5s ease;}
+@keyframes diceRoll{0%,100%{transform:rotate(0deg);}25%{transform:rotate(-15deg) scale(1.1);}75%{transform:rotate(15deg) scale(1.1);}}
+.dice-question{background:#f0f4ff;border-radius:14px;padding:12px 14px;margin:10px 0;min-height:56px;display:flex;align-items:center;justify-content:center;text-align:center;font-size:14px;font-weight:600;color:var(--blue);}
+.dice-answer{display:none;background:#e8fff6;border:2px solid var(--mint);border-radius:12px;padding:10px;margin-top:8px;font-size:13px;color:#1a7a5e;font-weight:600;}
+.dice-answer.show{display:block;animation:fadeIn .3s ease;}
+
+/* ─── TRUE/FALSE ─── */
+.tf-statements{display:flex;flex-direction:column;gap:7px;margin:10px 0;}
+.tf-stmt{background:#f0f4ff;border-radius:12px;padding:10px 13px;font-weight:600;font-size:13px;display:flex;justify-content:space-between;align-items:center;gap:8px;}
+.tf-btns{display:flex;gap:5px;flex-shrink:0;}
+.tf-btn{padding:5px 11px;border-radius:20px;border:2px solid transparent;font-weight:700;font-size:12px;cursor:pointer;transition:all .2s;background:white;}
+.tf-btn.vrai{border-color:#4DD9AC;color:#1a7a5e;}
+.tf-btn.vrai:hover,.tf-btn.vrai.selected{background:#4DD9AC;color:white;}
+.tf-btn.faux{border-color:#FF6B6B;color:#c0392b;}
+.tf-btn.faux:hover,.tf-btn.faux.selected{background:#FF6B6B;color:white;}
+.tf-stmt.correct-stmt{background:#e8fff6;}
+.tf-stmt.wrong-stmt{background:#fff0f0;}
+
+/* ─── BLANKS ─── */
+.blank-sentence{font-size:15px;font-weight:600;line-height:2.4;color:#333;margin:10px 0;}
+.blank{display:inline-block;min-width:86px;border-bottom:3px solid var(--blue);text-align:center;padding:2px 6px;margin:0 3px;cursor:pointer;font-weight:800;color:var(--blue);border-radius:4px 4px 0 0;background:#EEF4FF;}
+.blank.filled-correct{border-color:var(--mint);background:#e8fff6;color:#1a7a5e;}
+.blank.filled-wrong{border-color:var(--coral);background:#fff0f0;color:#c0392b;}
+.word-bank{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0;}
+.word-chip{padding:6px 13px;border-radius:20px;background:var(--yellow);color:var(--blue);font-weight:700;font-size:13px;cursor:pointer;transition:all .2s;border:2px solid transparent;}
+.word-chip:hover{transform:scale(1.05);}
+.word-chip.used{opacity:.35;cursor:not-allowed;pointer-events:none;}
+
+/* ─── ACCORDION ─── */
+.accordion{margin:10px 0;}
+.acc-item{border-radius:12px;border:2px solid #e0e0e0;margin-bottom:6px;overflow:hidden;}
+.acc-header{padding:11px 15px;font-weight:700;font-size:14px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;transition:background .2s;}
+.acc-header:hover{background:#f5f5f5;}
+.acc-body{padding:0 15px;max-height:0;overflow:hidden;transition:max-height .35s ease,padding .35s ease;font-size:13px;line-height:1.6;color:#444;}
+.acc-item.open .acc-body{max-height:300px;padding:10px 15px;}
+.acc-arrow{transition:transform .3s;}
+.acc-item.open .acc-arrow{transform:rotate(180deg);}
+
+/* ─── CERCLES / VENN ─── */
+.venn-wrapper{position:relative;margin:14px auto;overflow:visible;}
+.venn-legend{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0;}
+.venn-legend-item{display:flex;align-items:center;gap:5px;font-size:12px;font-weight:700;}
+.venn-dot{width:12px;height:12px;border-radius:50%;flex-shrink:0;}
+.country-tabs{display:flex;gap:6px;margin:10px 0;flex-wrap:wrap;}
+.country-tab{padding:5px 12px;border-radius:20px;font-size:12px;font-weight:700;cursor:pointer;border:2px solid transparent;transition:all .2s;background:#f0f4ff;color:#555;}
+.country-tab:hover{transform:scale(1.05);}
+.country-info-box{background:#f0f4ff;border-radius:14px;padding:14px;margin:8px 0;min-height:70px;font-size:13px;line-height:1.6;display:flex;align-items:center;}
+.badge{display:inline-block;padding:2px 8px;border-radius:10px;font-size:11px;font-weight:700;margin:2px;}
+
+/* ─── FRISE INTERACTIVE ─── */
+@keyframes fSmoke{0%{opacity:0;r:4;cy:28;}50%{opacity:.6;}100%{opacity:0;r:10;cy:8;}}
+@keyframes fFloat{0%,100%{transform:translateY(0);}50%{transform:translateY(-4px);}}
+@keyframes fCoinSpin{0%{rx:14;}40%{rx:2;}80%{rx:14;}100%{rx:14;}}
+@keyframes fWave{0%,100%{transform:rotate(-3deg);}50%{transform:rotate(3deg);}}
+@keyframes fPulse{0%,100%{transform:scale(1);opacity:.7;}50%{transform:scale(1.25);opacity:1;}}
+@keyframes fSlide{0%{transform:translateX(0);}100%{transform:translateX(22px);}}
+@keyframes fConfetti{0%{cy:4;opacity:1;}100%{cy:64;opacity:0;}}
+@keyframes fRise{0%{transform:translateY(10px);opacity:.2;}100%{transform:translateY(0);opacity:1;}}
+@keyframes fSpin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+@keyframes fBarrier{0%,100%{transform:rotate(0deg) translateX(0);}50%{transform:rotate(-65deg);}}
+
+.frise-steps{display:flex;flex-direction:column;gap:0;margin:6px 0;position:relative;}
+.frise-steps::before{content:'';position:absolute;left:20px;top:0;bottom:0;width:3px;background:linear-gradient(to bottom,#FFD700,#003F87);border-radius:3px;}
+.frise-step{display:flex;gap:8px;align-items:flex-start;position:relative;cursor:pointer;}
+.frise-step+.frise-step{margin-top:1px;}
+.frise-dot-wrap{width:40px;flex-shrink:0;display:flex;align-items:center;justify-content:center;padding-top:8px;position:relative;z-index:1;}
+.frise-dot{width:14px;height:14px;border-radius:50%;border:2px solid white;box-shadow:0 0 0 2px #ccc;transition:transform .2s,box-shadow .2s;flex-shrink:0;}
+.frise-step:hover .frise-dot,.frise-step.open .frise-dot{transform:scale(1.35);box-shadow:0 0 0 3px var(--blue);}
+.frise-head{display:flex;align-items:center;justify-content:space-between;gap:6px;padding:4px 8px;border-radius:10px;flex:1;transition:background .2s;min-height:36px;}
+.frise-step:hover .frise-head{background:#f0f4ff;}
+.frise-step.open .frise-head{background:#EEF4FF;}
+.frise-head-text{display:flex;flex-direction:column;gap:1px;flex:1;}
+.frise-year{font-family:'Baloo 2',cursive;font-weight:800;font-size:11px;color:var(--blue);white-space:nowrap;}
+.frise-title{font-weight:700;font-size:11px;color:#333;line-height:1.25;}
+.frise-icon{width:44px;height:37px;flex-shrink:0;opacity:.85;transition:opacity .2s;}
+.frise-step:hover .frise-icon,.frise-step.open .frise-icon{opacity:1;}
+.frise-body{display:none;margin:0 0 4px 48px;background:#f8faff;border-radius:8px;padding:7px 10px;font-size:11px;line-height:1.5;color:#444;border-left:3px solid var(--sky);}
+.frise-step.open .frise-body{display:block;animation:fadeIn .3s ease;}
+.frise-pays{display:flex;flex-wrap:wrap;gap:3px;margin-top:5px;}
+.frise-pays span{font-size:10px;background:#EEF4FF;padding:1px 6px;border-radius:10px;font-weight:600;color:var(--blue);}
+
+/* ─── CERCLES CONCENTRIQUES SVG ─── */
+.circles-container{position:relative;width:100%;max-width:440px;margin:0 auto;}
+.circles-svg{width:100%;height:auto;}
+.country-pill{display:inline-flex;align-items:center;gap:4px;padding:3px 9px;border-radius:20px;font-size:11px;font-weight:700;cursor:pointer;margin:2px;border:2px solid transparent;transition:all .15s;}
+.country-pill:hover{transform:scale(1.08);}
+.tooltip-box{background:var(--blue);color:white;padding:10px 14px;border-radius:12px;font-size:12px;line-height:1.5;margin-top:8px;display:none;animation:fadeIn .3s ease;}
+.tooltip-box.show{display:block;}
+.filter-btns{display:flex;gap:6px;flex-wrap:wrap;margin:8px 0;}
+.filter-btn{padding:5px 12px;border-radius:20px;font-size:12px;font-weight:700;cursor:pointer;border:2px solid transparent;transition:all .2s;}
+.filter-btn.active{border-color:white;box-shadow:0 2px 8px rgba(0,0,0,.2);}
+
+@media(max-width:520px){
+  .card{padding:20px 16px;}
+  .inst-grid,.quiz-options{grid-template-columns:1fr;}
+  .match-container{flex-direction:column;}
+  .ws-cell{width:24px;height:24px;font-size:11px;}
+}
+</style>
+</head>
+<body>
+<div class="stars"></div>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- FOND ILLUSTRÉ — MONUMENTS EN BORDURE -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<svg id="border-bg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 900"
+  style="position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none;">
+
+  <!-- Fond blanc -->
+  <rect width="1400" height="900" fill="#ffffff"/>
+
+  <!-- Légère trame pointillée décorative -->
+  <defs>
+    <pattern id="dots" x="0" y="0" width="30" height="30" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1.2" fill="#E3EAF8" opacity=".6"/>
+    </pattern>
+  </defs>
+  <rect width="1400" height="900" fill="url(#dots)"/>
+
+  <!-- Bordure décorative légère -->
+  <rect x="12" y="12" width="1376" height="876" rx="18" fill="none" stroke="#D0DCF0" stroke-width="2" stroke-dasharray="8,6"/>
+
+  <!-- ════════════════════════════════════════════ -->
+  <!-- HAUT — gauche vers droite -->
+  <!-- ════════════════════════════════════════════ -->
+
+  <!-- 🇫🇷 TOUR EIFFEL — Paris (x=80) -->
+  <g transform="translate(80,20)">
+    <line x1="0" y1="110" x2="-22" y2="110" stroke="#546E7A" stroke-width="2.5"/>
+    <line x1="0" y1="110" x2="22" y2="110" stroke="#546E7A" stroke-width="2.5"/>
+    <line x1="-22" y1="110" x2="-12" y2="78" stroke="#546E7A" stroke-width="2.5"/>
+    <line x1="22" y1="110" x2="12" y2="78" stroke="#546E7A" stroke-width="2.5"/>
+    <line x1="-12" y1="78" x2="-6" y2="45" stroke="#546E7A" stroke-width="2.5"/>
+    <line x1="12" y1="78" x2="6" y2="45" stroke="#546E7A" stroke-width="2.5"/>
+    <line x1="-6" y1="45" x2="0" y2="10" stroke="#546E7A" stroke-width="2"/>
+    <line x1="6" y1="45" x2="0" y2="10" stroke="#546E7A" stroke-width="2"/>
+    <line x1="-14" y1="88" x2="14" y2="88" stroke="#546E7A" stroke-width="2"/>
+    <line x1="-8" y1="60" x2="8" y2="60" stroke="#546E7A" stroke-width="1.5"/>
+    <line x1="0" y1="10" x2="0" y2="2" stroke="#546E7A" stroke-width="1.5"/>
+    <circle cx="0" cy="1" r="2" fill="#FF6B6B"/>
+    <text x="0" y="124" font-family="'Nunito',sans-serif" font-size="11" fill="#546E7A" text-anchor="middle" font-weight="700">Paris 🇫🇷</text>
+  </g>
+
+  <!-- 🇩🇪 PORTE DE BRANDEBOURG — Berlin (x=220) -->
+  <g transform="translate(220,30)">
+    <!-- colonnes -->
+    <rect x="-28" y="40" width="7" height="55" fill="#A1887F"/>
+    <rect x="-16" y="40" width="7" height="55" fill="#A1887F"/>
+    <rect x="-4"  y="40" width="7" height="55" fill="#A1887F"/>
+    <rect x="8"   y="40" width="7" height="55" fill="#A1887F"/>
+    <rect x="20"  y="40" width="7" height="55" fill="#A1887F"/>
+    <!-- entablement -->
+    <rect x="-32" y="30" width="68" height="12" fill="#8D6E63"/>
+    <rect x="-30" y="25" width="64" height="6" fill="#795548"/>
+    <!-- quadrige -->
+    <ellipse cx="0" cy="16" rx="18" ry="8" fill="#D4A017"/>
+    <polygon points="-6,16 0,4 6,16" fill="#D4A017"/>
+    <!-- base -->
+    <rect x="-32" y="94" width="68" height="5" fill="#795548"/>
+    <text x="0" y="108" font-family="'Nunito',sans-serif" font-size="11" fill="#795548" text-anchor="middle" font-weight="700">Berlin 🇩🇪</text>
+  </g>
+
+  <!-- 🇬🇧 BIG BEN — Londres (x=380) -->
+  <g transform="translate(380,18)">
+    <rect x="-14" y="20" width="28" height="72" fill="#90A4AE"/>
+    <rect x="-16" y="14" width="32" height="8" fill="#78909C"/>
+    <rect x="-10" y="6" width="20" height="10" fill="#90A4AE"/>
+    <polygon points="-10,6 0,-8 10,6" fill="#607D8B"/>
+    <line x1="-10" y1="46" x2="10" y2="46" stroke="#546E7A" stroke-width="1.5"/>
+    <line x1="0" y1="36" x2="0" y2="56" stroke="#546E7A" stroke-width="1.5"/>
+    <rect x="-14" y="55" width="28" height="3" fill="#78909C"/>
+    <rect x="-14" y="72" width="28" height="3" fill="#78909C"/>
+    <rect x="-6" y="75" width="5" height="17" fill="#78909C"/>
+    <rect x="1" y="75" width="5" height="17" fill="#78909C"/>
+    <text x="0" y="105" font-family="'Nunito',sans-serif" font-size="11" fill="#607D8B" text-anchor="middle" font-weight="700">Londres 🇬🇧</text>
+  </g>
+
+  <!-- 🇮🇹 COLISÉE — Rome (x=545) -->
+  <g transform="translate(545,32)">
+    <ellipse cx="0" cy="45" rx="38" ry="28" fill="none" stroke="#D4A017" stroke-width="4"/>
+    <ellipse cx="0" cy="45" rx="25" ry="18" fill="none" stroke="#D4A017" stroke-width="3"/>
+    <!-- arches -->
+    <path d="M-22,33 Q-22,22 -15,22 Q-8,22 -8,33" fill="none" stroke="#D4A017" stroke-width="2"/>
+    <path d="M-8,33 Q-8,22 -1,22 Q6,22 6,33" fill="none" stroke="#D4A017" stroke-width="2"/>
+    <path d="M6,33 Q6,22 13,22 Q20,22 20,33" fill="none" stroke="#D4A017" stroke-width="2"/>
+    <rect x="-38" y="70" width="76" height="7" rx="2" fill="#D4A017"/>
+    <rect x="-38" y="56" width="76" height="5" fill="#C8960C" opacity=".6"/>
+    <rect x="-38" y="42" width="76" height="5" fill="#C8960C" opacity=".4"/>
+    <text x="0" y="88" font-family="'Nunito',sans-serif" font-size="11" fill="#C8960C" text-anchor="middle" font-weight="700">Rome 🇮🇹</text>
+  </g>
+
+  <!-- 🇪🇸 SAGRADA FAMÍLIA — Madrid (x=720) -->
+  <g transform="translate(720,18)">
+    <!-- tours -->
+    <rect x="-20" y="30" width="12" height="72" fill="#FFAB91"/>
+    <polygon points="-20,30 -14,10 -8,30" fill="#FF8A65"/>
+    <rect x="-6" y="18" width="12" height="84" fill="#FF8A65"/>
+    <polygon points="-6,18 0,-4 6,18" fill="#FF7043"/>
+    <rect x="8" y="30" width="12" height="72" fill="#FFAB91"/>
+    <polygon points="8,30 14,10 20,30" fill="#FF8A65"/>
+    <!-- nef centrale -->
+    <rect x="-20" y="80" width="40" height="22" fill="#FFCCBC"/>
+    <!-- rosace -->
+    <circle cx="0" cy="52" r="6" fill="none" stroke="#FF7043" stroke-width="1.5"/>
+    <line x1="0" y1="46" x2="0" y2="58" stroke="#FF7043" stroke-width="1"/>
+    <line x1="-6" y1="52" x2="6" y2="52" stroke="#FF7043" stroke-width="1"/>
+    <text x="0" y="114" font-family="'Nunito',sans-serif" font-size="11" fill="#E64A19" text-anchor="middle" font-weight="700">Madrid 🇪🇸</text>
+  </g>
+
+  <!-- 🇵🇹 TOUR DE BELÉM — Lisbonne (x=890) -->
+  <g transform="translate(890,28)">
+    <rect x="-14" y="20" width="28" height="60" rx="2" fill="#B0BEC5"/>
+    <rect x="-16" y="16" width="32" height="6" fill="#90A4AE"/>
+    <rect x="-10" y="6" width="20" height="12" rx="1" fill="#90A4AE"/>
+    <polygon points="-10,6 0,-8 10,6" fill="#78909C"/>
+    <circle cx="-8" cy="34" r="4" fill="#546E7A"/>
+    <circle cx="8" cy="34" r="4" fill="#546E7A"/>
+    <circle cx="-8" cy="50" r="4" fill="#546E7A"/>
+    <circle cx="8" cy="50" r="4" fill="#546E7A"/>
+    <circle cx="0" cy="42" r="4" fill="#546E7A"/>
+    <rect x="-18" y="78" width="36" height="5" rx="1" fill="#78909C"/>
+    <text x="0" y="96" font-family="'Nunito',sans-serif" font-size="11" fill="#546E7A" text-anchor="middle" font-weight="700">Lisbonne 🇵🇹</text>
+  </g>
+
+  <!-- 🇸🇪 DRAKKAR — Stockholm (x=1070) -->
+  <g transform="translate(1070,40)">
+    <path d="M-40,35 Q0,15 40,35 L32,52 Q0,45 -32,52Z" fill="#8B4513"/>
+    <path d="M-35,35 Q-20,18 0,35" fill="none" stroke="#A0522D" stroke-width="1.5"/>
+    <path d="M0,35 Q20,18 35,35" fill="none" stroke="#A0522D" stroke-width="1.5"/>
+    <!-- mât et voile -->
+    <line x1="0" y1="10" x2="0" y2="35" stroke="#5D4037" stroke-width="3"/>
+    <path d="M0,10 Q18,18 0,28 Q18,28 0,38" fill="#E53935" opacity=".8"/>
+    <!-- proue dragon -->
+    <path d="M40,35 Q52,25 55,32 Q52,40 40,38Z" fill="#8B4513"/>
+    <circle cx="52" cy="30" r="2" fill="#FF6B6B"/>
+    <!-- rames -->
+    <line x1="-25" y1="48" x2="-25" y2="62" stroke="#5D4037" stroke-width="2"/>
+    <line x1="-12" y1="50" x2="-12" y2="64" stroke="#5D4037" stroke-width="2"/>
+    <line x1="12"  y1="50" x2="12"  y2="64" stroke="#5D4037" stroke-width="2"/>
+    <line x1="25"  y1="48" x2="25"  y2="62" stroke="#5D4037" stroke-width="2"/>
+    <text x="0" y="78" font-family="'Nunito',sans-serif" font-size="11" fill="#5D4037" text-anchor="middle" font-weight="700">Stockholm 🇸🇪</text>
+  </g>
+
+  <!-- 🇫🇮 RENNE — Helsinki (x=1230) -->
+  <g transform="translate(1230,30)">
+    <!-- sapin -->
+    <polygon points="-22,90 -10,65 2,90" fill="#2E7D32"/>
+    <polygon points="-22,72 -10,47 2,72" fill="#388E3C"/>
+    <polygon points="-22,55 -10,32 2,55" fill="#43A047"/>
+    <rect x="-13" y="90" width="6" height="10" fill="#5D4037"/>
+    <!-- renne -->
+    <ellipse cx="24" cy="72" rx="18" ry="11" fill="#A0522D"/>
+    <circle cx="14" cy="60" r="8" fill="#A0522D"/>
+    <line x1="14" y1="52" x2="10" y2="36" stroke="#8B4513" stroke-width="2"/>
+    <line x1="14" y1="52" x2="18" y2="36" stroke="#8B4513" stroke-width="2"/>
+    <line x1="10" y1="36" x2="5" y2="28" stroke="#8B4513" stroke-width="1.5"/>
+    <line x1="10" y1="36" x2="14" y2="28" stroke="#8B4513" stroke-width="1.5"/>
+    <line x1="18" y1="36" x2="14" y2="28" stroke="#8B4513" stroke-width="1.5"/>
+    <line x1="18" y1="36" x2="22" y2="28" stroke="#8B4513" stroke-width="1.5"/>
+    <circle cx="10" cy="58" r="2" fill="#FFD700"/>
+    <line x1="18" y1="78" x2="18" y2="92" stroke="#8B4513" stroke-width="2"/>
+    <line x1="26" y1="80" x2="26" y2="94" stroke="#8B4513" stroke-width="2"/>
+    <line x1="32" y1="78" x2="32" y2="92" stroke="#8B4513" stroke-width="2"/>
+    <line x1="38" y1="75" x2="38" y2="89" stroke="#8B4513" stroke-width="2"/>
+    <text x="8" y="108" font-family="'Nunito',sans-serif" font-size="11" fill="#2E7D32" text-anchor="middle" font-weight="700">Helsinki 🇫🇮</text>
+  </g>
+
+  <!-- ════════════════════════════════════════════ -->
+  <!-- DROITE — haut vers bas -->
+  <!-- ════════════════════════════════════════════ -->
+
+  <!-- 🇳🇱 MOULIN À VENT — Amsterdam (y=250) -->
+  <g transform="translate(1355,250)">
+    <!-- corps du moulin -->
+    <polygon points="-16,0 16,0 12,55 -12,55" fill="#E65100"/>
+    <rect x="-18" y="-4" width="36" height="5" fill="#BF360C"/>
+    <!-- ailes -->
+    <line x1="0" y1="0" x2="0" y2="-55" stroke="#5D4037" stroke-width="4"/>
+    <line x1="0" y1="0" x2="55" y2="0" stroke="#5D4037" stroke-width="4"/>
+    <line x1="0" y1="0" x2="0" y2="55" stroke="#5D4037" stroke-width="4"/>
+    <line x1="0" y1="0" x2="-55" y2="0" stroke="#5D4037" stroke-width="4"/>
+    <rect x="-4" y="-55" width="8" height="55" fill="#795548" opacity=".6"/>
+    <rect x="0" y="-4" width="55" height="8" fill="#795548" opacity=".6"/>
+    <circle cx="0" cy="0" r="6" fill="#FFCC02"/>
+    <!-- porte -->
+    <rect x="-6" y="38" width="12" height="17" rx="2" fill="#5D4037"/>
+    <text x="0" y="76" font-family="'Nunito',sans-serif" font-size="11" fill="#E65100" text-anchor="middle" font-weight="700">Amsterdam 🇳🇱</text>
+  </g>
+
+  <!-- 🇦🇹 GRANDE ROUE — Vienne (y=430) -->
+  <g transform="translate(1355,430)">
+    <line x1="0" y1="52" x2="0" y2="82" stroke="#333" stroke-width="4"/>
+    <circle cx="0" cy="0" r="52" fill="none" stroke="#C62828" stroke-width="5"/>
+    <!-- rayons -->
+    <line x1="0" y1="-52" x2="0" y2="52" stroke="#333" stroke-width="2"/>
+    <line x1="-52" y1="0" x2="52" y2="0" stroke="#333" stroke-width="2"/>
+    <line x1="-37" y1="-37" x2="37" y2="37" stroke="#333" stroke-width="2"/>
+    <line x1="37" y1="-37" x2="-37" y2="37" stroke="#333" stroke-width="2"/>
+    <!-- cabines -->
+    <rect x="-8" y="-60" width="16" height="12" rx="2" fill="#E53935"/>
+    <rect x="44" y="-8" width="16" height="12" rx="2" fill="#E53935"/>
+    <rect x="-8" y="48" width="16" height="12" rx="2" fill="#E53935"/>
+    <rect x="-60" y="-8" width="16" height="12" rx="2" fill="#E53935"/>
+    <circle cx="0" cy="0" r="6" fill="#FFD700"/>
+    <text x="0" y="100" font-family="'Nunito',sans-serif" font-size="11" fill="#C62828" text-anchor="middle" font-weight="700">Vienne 🇦🇹</text>
+  </g>
+
+  <!-- 🇬🇷 PARTHÉNON — Athènes (y=640) -->
+  <g transform="translate(1340,640)">
+    <polygon points="-50,0 0,-30 50,0" fill="#CFD8DC"/>
+    <rect x="-50" y="0" width="100" height="8" fill="#B0BEC5"/>
+    <rect x="-46" y="8" width="10" height="42" fill="#ECEFF1" stroke="#B0BEC5" stroke-width="1"/>
+    <rect x="-28" y="8" width="10" height="42" fill="#ECEFF1" stroke="#B0BEC5" stroke-width="1"/>
+    <rect x="-10" y="8" width="10" height="42" fill="#ECEFF1" stroke="#B0BEC5" stroke-width="1"/>
+    <rect x="8"  y="8" width="10" height="42" fill="#ECEFF1" stroke="#B0BEC5" stroke-width="1"/>
+    <rect x="26" y="8" width="10" height="42" fill="#ECEFF1" stroke="#B0BEC5" stroke-width="1"/>
+    <rect x="-52" y="48" width="104" height="7" fill="#B0BEC5"/>
+    <rect x="-54" y="55" width="108" height="5" fill="#90A4AE"/>
+    <text x="0" y="75" font-family="'Nunito',sans-serif" font-size="11" fill="#607D8B" text-anchor="middle" font-weight="700">Athènes 🇬🇷</text>
+  </g>
+
+  <!-- ════════════════════════════════════════════ -->
+  <!-- BAS — droite vers gauche -->
+  <!-- ════════════════════════════════════════════ -->
+
+  <!-- 🇷🇴 CHÂTEAU DE BRAN — Bucarest (x=1220) -->
+  <g transform="translate(1220,800)">
+    <rect x="-30" y="-78" width="60" height="78" fill="#90A4AE"/>
+    <rect x="-22" y="-58" width="16" height="58" fill="#78909C"/>
+    <polygon points="-22,-58 -14,-76 -6,-58" fill="#607D8B"/>
+    <rect x="10" y="-68" width="20" height="68" fill="#90A4AE"/>
+    <polygon points="10,-68 20,-88 30,-68" fill="#607D8B"/>
+    <rect x="-30" y="-82" width="60" height="6" fill="#78909C"/>
+    <rect x="-8" y="-40" width="16" height="24" rx="1" fill="#546E7A"/>
+    <text x="0" y="14" font-family="'Nunito',sans-serif" font-size="11" fill="#546E7A" text-anchor="middle" font-weight="700">Bucarest 🇷🇴</text>
+  </g>
+
+  <!-- 🇧🇬 ROSE — Sofia (x=1055) -->
+  <g transform="translate(1055,820)">
+    <circle cx="0" cy="-20" r="24" fill="#FCE4EC"/>
+    <circle cx="0" cy="-20" r="16" fill="#F48FB1"/>
+    <circle cx="0" cy="-20" r="8"  fill="#E91E63"/>
+    <circle cx="0" cy="-20" r="3"  fill="#AD1457"/>
+    <!-- pétales externes -->
+    <ellipse cx="0"  cy="-46" rx="8" ry="10" fill="#F48FB1" opacity=".8"/>
+    <ellipse cx="24" cy="-36" rx="8" ry="10" fill="#F48FB1" opacity=".8" transform="rotate(60,0,-20)"/>
+    <ellipse cx="24" cy="-4"  rx="8" ry="10" fill="#F48FB1" opacity=".8" transform="rotate(120,0,-20)"/>
+    <ellipse cx="0"  cy="6"   rx="8" ry="10" fill="#F48FB1" opacity=".8" transform="rotate(180,0,-20)"/>
+    <ellipse cx="-24" cy="-4" rx="8" ry="10" fill="#F48FB1" opacity=".8" transform="rotate(240,0,-20)"/>
+    <ellipse cx="-24" cy="-36" rx="8" ry="10" fill="#F48FB1" opacity=".8" transform="rotate(300,0,-20)"/>
+    <!-- tige -->
+    <line x1="0" y1="4" x2="0" y2="20" stroke="#4CAF50" stroke-width="2.5"/>
+    <text x="0" y="34" font-family="'Nunito',sans-serif" font-size="11" fill="#880E4F" text-anchor="middle" font-weight="700">Sofia 🇧🇬</text>
+  </g>
+
+  <!-- 🇨🇿 PONT CHARLES — Prague (x=880) -->
+  <g transform="translate(880,820)">
+    <path d="M-60,-8 Q-40,-30 -20,-8 Q0,-30 20,-8 Q40,-30 60,-8" fill="none" stroke="#8D6E63" stroke-width="4"/>
+    <line x1="-60" y1="-8" x2="60" y2="-8" stroke="#8D6E63" stroke-width="4"/>
+    <line x1="-60" y1="-8" x2="-60" y2="10" stroke="#8D6E63" stroke-width="3"/>
+    <line x1="60"  y1="-8" x2="60"  y2="10" stroke="#8D6E63" stroke-width="3"/>
+    <!-- statues stylisées -->
+    <circle cx="-40" cy="-14" r="4" fill="#A1887F"/>
+    <rect x="-43" y="-10" width="6" height="8" fill="#A1887F"/>
+    <circle cx="0"  cy="-14" r="4" fill="#A1887F"/>
+    <rect x="-3"   y="-10" width="6" height="8" fill="#A1887F"/>
+    <circle cx="40" cy="-14" r="4" fill="#A1887F"/>
+    <rect x="37"   y="-10" width="6" height="8" fill="#A1887F"/>
+    <text x="0" y="24" font-family="'Nunito',sans-serif" font-size="11" fill="#6D4C41" text-anchor="middle" font-weight="700">Prague 🇨🇿</text>
+  </g>
+
+  <!-- 🇭🇺 PARLEMENT — Budapest (x=700) -->
+  <g transform="translate(700,800)">
+    <rect x="-55" y="-55" width="110" height="55" fill="#CE93D8"/>
+    <rect x="-57" y="-58" width="114" height="6" fill="#AB47BC"/>
+    <!-- dôme central -->
+    <rect x="-14" y="-82" width="28" height="28" fill="#CE93D8"/>
+    <path d="M-14,-82 Q0,-108 14,-82Z" fill="#AB47BC"/>
+    <!-- tours latérales -->
+    <rect x="-55" y="-70" width="20" height="15" fill="#BA68C8"/>
+    <polygon points="-55,-70 -45,-84 -35,-70" fill="#9C27B0"/>
+    <rect x="35"  y="-70" width="20" height="15" fill="#BA68C8"/>
+    <polygon points="35,-70 45,-84 55,-70" fill="#9C27B0"/>
+    <!-- fenêtres -->
+    <rect x="-40" y="-45" width="8" height="14" rx="2" fill="#E1BEE7"/>
+    <rect x="-20" y="-45" width="8" height="14" rx="2" fill="#E1BEE7"/>
+    <rect x="12"  y="-45" width="8" height="14" rx="2" fill="#E1BEE7"/>
+    <rect x="32"  y="-45" width="8" height="14" rx="2" fill="#E1BEE7"/>
+    <text x="0" y="14" font-family="'Nunito',sans-serif" font-size="11" fill="#6A1B9A" text-anchor="middle" font-weight="700">Budapest 🇭🇺</text>
+  </g>
+
+  <!-- 🇵🇱 PALAIS DE LA CULTURE — Varsovie (x=525) -->
+  <g transform="translate(525,800)">
+    <rect x="-20" y="-85" width="40" height="85" fill="#9E9E9E"/>
+    <rect x="-24" y="-88" width="48" height="6" fill="#757575"/>
+    <rect x="-12" y="-100" width="24" height="18" fill="#9E9E9E"/>
+    <rect x="-14" y="-102" width="28" height="4" fill="#757575"/>
+    <rect x="-6"  y="-115" width="12" height="18" fill="#9E9E9E"/>
+    <polygon points="-6,-115 0,-130 6,-115" fill="#616161"/>
+    <!-- étages -->
+    <rect x="-24" y="-62" width="48" height="3" fill="#757575"/>
+    <rect x="-24" y="-44" width="48" height="3" fill="#757575"/>
+    <rect x="-24" y="-26" width="48" height="3" fill="#757575"/>
+    <!-- fenêtres -->
+    <rect x="-8" y="-72" width="5" height="8" fill="#B0BEC5"/>
+    <rect x="3"  y="-72" width="5" height="8" fill="#B0BEC5"/>
+    <rect x="-8" y="-54" width="5" height="8" fill="#B0BEC5"/>
+    <rect x="3"  y="-54" width="5" height="8" fill="#B0BEC5"/>
+    <text x="0" y="14" font-family="'Nunito',sans-serif" font-size="11" fill="#424242" text-anchor="middle" font-weight="700">Varsovie 🇵🇱</text>
+  </g>
+
+  <!-- 🇧🇪 ATOMIUM — Bruxelles (x=350) -->
+  <g transform="translate(350,810)">
+    <!-- atomes (sphères) -->
+    <circle cx="0"   cy="-70" r="14" fill="#4FC3F7" stroke="#0288D1" stroke-width="2"/>
+    <circle cx="-34" cy="-48" r="12" fill="#4FC3F7" stroke="#0288D1" stroke-width="2"/>
+    <circle cx="34"  cy="-48" r="12" fill="#4FC3F7" stroke="#0288D1" stroke-width="2"/>
+    <circle cx="-34" cy="-10" r="12" fill="#29B6F6" stroke="#0288D1" stroke-width="2"/>
+    <circle cx="34"  cy="-10" r="12" fill="#29B6F6" stroke="#0288D1" stroke-width="2"/>
+    <circle cx="0"   cy="12"  r="14" fill="#4FC3F7" stroke="#0288D1" stroke-width="2"/>
+    <!-- tubes de liaison -->
+    <line x1="0"   y1="-56" x2="-22" y2="-36" stroke="#0288D1" stroke-width="3"/>
+    <line x1="0"   y1="-56" x2="22"  y2="-36" stroke="#0288D1" stroke-width="3"/>
+    <line x1="-22" y1="-36" x2="-22" y2="-22" stroke="#0288D1" stroke-width="3"/>
+    <line x1="22"  y1="-36" x2="22"  y2="-22" stroke="#0288D1" stroke-width="3"/>
+    <line x1="-22" y1="-22" x2="0"   y2="-2"  stroke="#0288D1" stroke-width="3"/>
+    <line x1="22"  y1="-22" x2="0"   y2="-2"  stroke="#0288D1" stroke-width="3"/>
+    <line x1="0"   y1="-56" x2="0"   y2="-2"  stroke="#0288D1" stroke-width="3"/>
+    <!-- pied -->
+    <line x1="0" y1="26" x2="0" y2="38" stroke="#0288D1" stroke-width="4"/>
+    <text x="0" y="52" font-family="'Nunito',sans-serif" font-size="11" fill="#0277BD" text-anchor="middle" font-weight="700">Bruxelles 🇧🇪</text>
+  </g>
+
+  <!-- ════════════════════════════════════════════ -->
+  <!-- GAUCHE — bas vers haut -->
+  <!-- ════════════════════════════════════════════ -->
+
+  <!-- 🇩🇰 PETITE SIRÈNE — Copenhague (y=680) -->
+  <g transform="translate(50,680)">
+    <!-- rocher -->
+    <ellipse cx="0" cy="48" rx="28" ry="12" fill="#B0BEC5"/>
+    <!-- queue -->
+    <path d="M-12,45 Q-16,28 -4,18 Q0,28 4,18 Q16,28 12,45Z" fill="#26A69A"/>
+    <path d="M-12,45 Q0,52 12,45 Q6,38 0,40 Q-6,38 -12,45Z" fill="#00897B"/>
+    <!-- corps -->
+    <ellipse cx="0" cy="8" rx="10" ry="14" fill="#FFCC80"/>
+    <!-- tête -->
+    <circle cx="0" cy="-8" r="12" fill="#FFCC80"/>
+    <!-- cheveux -->
+    <path d="M-12,-8 Q-16,10 -8,20" fill="none" stroke="#FF8F00" stroke-width="3"/>
+    <path d="M12,-8 Q14,6 8,20" fill="none" stroke="#FF8F00" stroke-width="3"/>
+    <path d="M-8,-18 Q0,-28 8,-18" fill="#FF8F00"/>
+    <!-- bras -->
+    <path d="M10,4 Q22,-2 24,6" fill="none" stroke="#FFCC80" stroke-width="3"/>
+    <text x="0" y="70" font-family="'Nunito',sans-serif" font-size="11" fill="#00695C" text-anchor="middle" font-weight="700">Copenhague 🇩🇰</text>
+  </g>
+
+  <!-- 🇮🇪 CHÂTEAU — Dublin (y=480) -->
+  <g transform="translate(50,480)">
+    <rect x="-35" y="-50" width="70" height="55" fill="#66BB6A"/>
+    <rect x="-40" y="-55" width="80" height="8" fill="#43A047"/>
+    <!-- créneaux -->
+    <rect x="-40" y="-64" width="12" height="12" fill="#43A047"/>
+    <rect x="-20" y="-64" width="12" height="12" fill="#43A047"/>
+    <rect x="0"   y="-64" width="12" height="12" fill="#43A047"/>
+    <rect x="20"  y="-64" width="12" height="12" fill="#43A047"/>
+    <!-- tours d'angle -->
+    <rect x="-52" y="-58" width="16" height="62" fill="#4CAF50"/>
+    <polygon points="-52,-58 -44,-72 -36,-58" fill="#388E3C"/>
+    <rect x="36"  y="-58" width="16" height="62" fill="#4CAF50"/>
+    <polygon points="36,-58 44,-72 52,-58" fill="#388E3C"/>
+    <!-- porte -->
+    <path d="M-10,5 Q0,-10 10,5 L10,5 L-10,5Z" fill="#2E7D32"/>
+    <rect x="-10" y="5" width="20" height="19" fill="#2E7D32"/>
+    <!-- fenêtres -->
+    <rect x="-28" y="-38" width="10" height="14" rx="2" fill="#C8E6C9"/>
+    <rect x="18"  y="-38" width="10" height="14" rx="2" fill="#C8E6C9"/>
+    <text x="0" y="22" font-family="'Nunito',sans-serif" font-size="11" fill="#1B5E20" text-anchor="middle" font-weight="700">Dublin 🇮🇪</text>
+  </g>
+
+  <!-- 🇱🇺 CASEMATES — Luxembourg (y=300) -->
+  <g transform="translate(55,300)">
+    <rect x="-30" y="-30" width="60" height="50" fill="#CE93D8"/>
+    <rect x="-34" y="-34" width="68" height="8" fill="#AB47BC"/>
+    <!-- arches casemates -->
+    <path d="M-22,-30 Q-22,-46 -10,-46 Q2,-46 2,-30" fill="none" stroke="#9C27B0" stroke-width="2.5"/>
+    <path d="M6,-30 Q6,-46 18,-46 Q30,-46 30,-30" fill="none" stroke="#9C27B0" stroke-width="2.5"/>
+    <!-- tour -->
+    <rect x="-18" y="-65" width="16" height="38" fill="#BA68C8"/>
+    <polygon points="-18,-65 -10,-80 -2,-65" fill="#9C27B0"/>
+    <rect x="8" y="-60" width="16" height="33" fill="#BA68C8"/>
+    <polygon points="8,-60 16,-75 24,-60" fill="#9C27B0"/>
+    <text x="0" y="32" font-family="'Nunito',sans-serif" font-size="11" fill="#6A1B9A" text-anchor="middle" font-weight="700">Luxembourg 🇱🇺</text>
+  </g>
+
+  <!-- 🇪🇸 🇧🇪 extra — étoile décorative coins -->
+  <!-- coins étoile UE décoratifs -->
+  <g opacity=".12">
+    <text x="22"   y="32"   font-size="28" fill="#003F87">★</text>
+    <text x="1360" y="32"   font-size="28" fill="#003F87">★</text>
+    <text x="22"   y="888"  font-size="28" fill="#003F87">★</text>
+    <text x="1360" y="888"  font-size="28" fill="#003F87">★</text>
+  </g>
+
+</svg>
+
+<div id="progress-bar"></div>
+<div id="slide-counter">1 / 19</div>
+<div id="stars-display">⭐ <span id="star-count">0</span></div>
+<div id="app">
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- SLIDE 1 : Intro -->
+<!-- ══════════════════════════════════════════════ -->
+<div class="slide active" id="slide-1">
+<div class="card">
+  <span class="emoji-big">🇪🇺</span>
+  <span class="tag" style="background:#FFD70033;color:#8B6914;">Cours interactif</span>
+  <h1>L'Europe,<br>c'est quoi exactement ?</h1>
+  <p>Tu as entendu parler de l'<span class="highlight">Union Européenne</span> mais tu ne sais pas trop comment ça marche ? Ce cours est fait pour toi !</p>
+  <p>🎮 Clique, réponds, découvre… et gagne des étoiles en chemin !</p>
+  <div style="background:#f0f4ff;border-radius:14px;padding:12px;margin-top:10px;">
+    <p style="font-size:13px;margin:0;">📍 <strong>Au programme :</strong> histoire de l'UE, carte des adhésions, Schengen, zone euro, quiz, mémory, mots croisés, mots mêlés, dés, vrai/faux et plus !</p>
+  </div>
+  <div class="nav-row"><div></div><button class="btn btn-primary" onclick="nextSlide()">C'est parti ! 🚀</button></div>
+</div>
+</div>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- SLIDE 2 : Grande frise interactive -->
+
+<div class="slide" id="slide-2">
+<div class="card">
+  <span class="tag" style="background:#003F8722;color:#003F87;">Histoire 📜</span>
+  <h2>La construction de l'Europe — étape par étape</h2>
+  <p style="font-size:13px;">Clique sur chaque étape pour en savoir plus !</p>
+  <div class="frise-steps" id="frise">
+
+    <!-- 1951 CECA -->
+    <div class="frise-step" onclick="toggleFrise(this)">
+      <div class="frise-dot-wrap"><div class="frise-dot" style="background:#e74c3c;"></div></div>
+      <div style="flex:1">
+        <div class="frise-head">
+          <div class="frise-head-text"><span class="frise-year">1951</span><span class="frise-title">La CECA — premier pas vers l'Europe</span></div>
+          <svg class="frise-icon" viewBox="0 0 64 54" xmlns="http://www.w3.org/2000/svg">
+            <rect x="8" y="30" width="48" height="22" rx="2" fill="#78909c"/>
+            <rect x="14" y="22" width="11" height="20" rx="1" fill="#607d8b"/>
+            <rect x="39" y="20" width="11" height="22" rx="1" fill="#607d8b"/>
+            <rect x="26" y="36" width="8" height="7" rx="1" fill="#FFD700" opacity=".9"/>
+            <circle cx="19" cy="16" r="4" fill="#b0bec5"><animate attributeName="cy" values="16;4;16" dur="2s" repeatCount="indefinite"/><animate attributeName="r" values="4;7;4" dur="2s" repeatCount="indefinite"/><animate attributeName="opacity" values=".7;0;.7" dur="2s" repeatCount="indefinite"/></circle>
+            <circle cx="44" cy="14" r="3" fill="#90a4ae"><animate attributeName="cy" values="14;3;14" dur="1.8s" begin=".6s" repeatCount="indefinite"/><animate attributeName="r" values="3;6;3" dur="1.8s" begin=".6s" repeatCount="indefinite"/><animate attributeName="opacity" values=".6;0;.6" dur="1.8s" begin=".6s" repeatCount="indefinite"/></circle>
+            <text x="32" y="53" font-size="9" text-anchor="middle">🤝</text>
+          </svg>
+        </div>
+        <div class="frise-body">La <strong>Communauté Européenne du Charbon et de l'Acier</strong> est créée par 6 pays. L'idée ? Partager ces ressources pour rendre une guerre franco-allemande "non seulement impensable, mais matériellement impossible" (Robert Schuman).
+        <div class="frise-pays"><span>🇫🇷 France</span><span>🇩🇪 Allemagne</span><span>🇮🇹 Italie</span><span>🇧🇪 Belgique</span><span>🇱🇺 Luxembourg</span><span>🇳🇱 Pays-Bas</span></div></div>
+      </div>
+    </div>
+
+    <!-- 1957 Rome -->
+    <div class="frise-step" onclick="toggleFrise(this)">
+      <div class="frise-dot-wrap"><div class="frise-dot" style="background:#e67e22;"></div></div>
+      <div style="flex:1">
+        <div class="frise-head">
+          <div class="frise-head-text"><span class="frise-year">1957</span><span class="frise-title">Traité de Rome — la CEE naît</span></div>
+          <svg class="frise-icon" viewBox="0 0 64 54" xmlns="http://www.w3.org/2000/svg">
+            <rect x="8" y="10" width="48" height="36" rx="3" fill="#fff9e6" stroke="#e67e22" stroke-width="1.5"/>
+            <rect x="8" y="10" width="48" height="7" rx="3" fill="#f39c12"/>
+            <rect x="8" y="39" width="48" height="7" rx="3" fill="#f39c12"/>
+            <line x1="16" y1="23" x2="48" y2="23" stroke="#ddd" stroke-width="1.5"/>
+            <line x1="16" y1="29" x2="44" y2="29" stroke="#ddd" stroke-width="1.5"/>
+            <line x1="16" y1="35" x2="40" y2="35" stroke="#ddd" stroke-width="1.5"/>
+            <g><animateTransform attributeName="transform" type="translate" values="0,0;4,4;0,0" dur="1.4s" repeatCount="indefinite"/>
+              <rect x="40" y="8" width="4" height="14" rx="1" fill="#e67e22" transform="rotate(30,42,15)"/>
+              <polygon points="40,21 44,21 42,25" fill="#f9a825" transform="rotate(30,42,15)"/>
+            </g>
+          </svg>
+        </div>
+        <div class="frise-body">Les mêmes 6 pays signent le <strong>Traité de Rome</strong> et créent la <strong>CEE</strong>. L'objectif : un marché commun sans frontières douanières. C'est aussi la création de l'EURATOM pour la coopération nucléaire civile.</div>
+      </div>
+    </div>
+
+    <!-- 1973 Élargissement -->
+    <div class="frise-step" onclick="toggleFrise(this)">
+      <div class="frise-dot-wrap"><div class="frise-dot" style="background:#f39c12;"></div></div>
+      <div style="flex:1">
+        <div class="frise-head">
+          <div class="frise-head-text"><span class="frise-year">1973</span><span class="frise-title">Premier élargissement : 9 membres</span></div>
+          <svg class="frise-icon" viewBox="0 0 64 54" xmlns="http://www.w3.org/2000/svg">
+            <rect x="18" y="6" width="28" height="42" rx="2" fill="#8d6e63"/>
+            <rect x="20" y="8" width="24" height="38" rx="2" fill="#795548" transform-origin="20 27"><animateTransform attributeName="transform" type="skewY" values="0;-8;0" dur="2s" repeatCount="indefinite"/></rect>
+            <circle cx="40" cy="27" r="2" fill="#FFD700"/>
+            <text x="30" y="31" font-size="10" text-anchor="middle">🇪🇺</text>
+            <text x="54" y="38" font-size="12"><animate attributeName="x" values="54;40;54" dur="2s" repeatCount="indefinite"/>🚶</text>
+          </svg>
+        </div>
+        <div class="frise-body">3 nouveaux pays rejoignent la CEE, qui passe à <strong>9 membres</strong>. Le Danemark, l'Irlande et le Royaume-Uni frappent à la porte (de Gaulle leur avait dit non deux fois avant !).
+        <div class="frise-pays"><span>🇩🇰 Danemark</span><span>🇮🇪 Irlande</span><span>🇬🇧 Royaume-Uni</span></div></div>
+      </div>
+    </div>
+
+    <!-- 1981–86 Europe du Sud -->
+    <div class="frise-step" onclick="toggleFrise(this)">
+      <div class="frise-dot-wrap"><div class="frise-dot" style="background:#2ecc71;"></div></div>
+      <div style="flex:1">
+        <div class="frise-head">
+          <div class="frise-head-text"><span class="frise-year">1981–86</span><span class="frise-title">L'Europe du Sud : 12 membres ☀️</span></div>
+          <svg class="frise-icon" viewBox="0 0 64 54" xmlns="http://www.w3.org/2000/svg">
+            <rect x="0" y="38" width="64" height="16" fill="#4FC3F7" opacity=".4"/>
+            <circle cx="32" cy="30" r="14" fill="#FFD700"><animate attributeName="cy" values="42;24;42" dur="3s" repeatCount="indefinite"/><animate attributeName="opacity" values=".3;1;.3" dur="3s" repeatCount="indefinite"/></circle>
+            <line x1="32" y1="10" x2="32" y2="4" stroke="#FFD700" stroke-width="2"><animate attributeName="y1" values="18;10;18" dur="3s" repeatCount="indefinite"/><animate attributeName="y2" values="12;4;12" dur="3s" repeatCount="indefinite"/></line>
+            <line x1="50" y1="18" x2="55" y2="13" stroke="#FFD700" stroke-width="2"/>
+            <line x1="14" y1="18" x2="9" y2="13" stroke="#FFD700" stroke-width="2"/>
+            <text x="6" y="38" font-size="11">🇬🇷</text><text x="24" y="38" font-size="11">🇪🇸</text><text x="44" y="38" font-size="11">🇵🇹</text>
+          </svg>
+        </div>
+        <div class="frise-body">Après leurs transitions démocratiques, la Grèce (1981), l'Espagne et le Portugal (1986) intègrent la CEE. La communauté atteint <strong>12 membres</strong>. Ces adhésions symbolisent le lien entre démocratie et Europe.
+        <div class="frise-pays"><span>🇬🇷 Grèce (1981)</span><span>🇪🇸 Espagne (1986)</span><span>🇵🇹 Portugal (1986)</span></div></div>
+      </div>
+    </div>
+
+    <!-- 1985 Schengen -->
+    <div class="frise-step" onclick="toggleFrise(this)">
+      <div class="frise-dot-wrap"><div class="frise-dot" style="background:#1abc9c;"></div></div>
+      <div style="flex:1">
+        <div class="frise-head">
+          <div class="frise-head-text"><span class="frise-year">1985</span><span class="frise-title">Accords de Schengen ✈️</span></div>
+          <svg class="frise-icon" viewBox="0 0 64 54" xmlns="http://www.w3.org/2000/svg">
+            <rect x="0" y="36" width="64" height="18" fill="#4FC3F7" opacity=".35"/>
+            <path d="M0,40 Q16,36 32,40 Q48,44 64,40" fill="none" stroke="#4FC3F7" stroke-width="1.5"><animate attributeName="d" values="M0,40 Q16,36 32,40 Q48,44 64,40;M0,42 Q16,38 32,42 Q48,46 64,42;M0,40 Q16,36 32,40 Q48,44 64,40" dur="2s" repeatCount="indefinite"/></path>
+            <g><animateTransform attributeName="transform" type="translate" values="0,0;0,-3;0,0" dur="2s" repeatCount="indefinite"/>
+              <path d="M10,36 Q32,30 54,36 L52,44 Q32,47 12,44 Z" fill="#795548"/>
+              <rect x="24" y="23" width="20" height="13" rx="2" fill="#a1887f"/>
+              <circle cx="28" cy="29" r="3" fill="#4FC3F7" stroke="white" stroke-width="1"/>
+              <circle cx="37" cy="29" r="3" fill="#4FC3F7" stroke="white" stroke-width="1"/>
+              <line x1="34" y1="7" x2="34" y2="23" stroke="#555" stroke-width="1.5"/>
+              <path d="M34,7 Q42,10 34,14" fill="#003F87"><animate attributeName="d" values="M34,7 Q42,10 34,14;M34,7 Q46,9 34,14;M34,7 Q42,10 34,14" dur="1s" repeatCount="indefinite"/></path>
+            </g>
+            <text x="46" y="53" font-size="8" fill="#c0392b" font-weight="700">🚫🛂</text>
+          </svg>
+        </div>
+        <div class="frise-body">Signés sur un <strong>bateau sur la Moselle</strong> ! Ces accords suppriment les contrôles aux frontières. L'<strong>espace Schengen</strong> permet de voyager librement sans passeport entre les pays signataires. En vigueur en 1995.
+        <div class="frise-pays"><span>🇫🇷 France</span><span>🇩🇪 Allemagne</span><span>🇧🇪 Belgique</span><span>🇳🇱 Pays-Bas</span><span>🇱🇺 Luxembourg</span></div></div>
+      </div>
+    </div>
+
+    <!-- 1992 Maastricht -->
+    <div class="frise-step" onclick="toggleFrise(this)">
+      <div class="frise-dot-wrap"><div class="frise-dot" style="background:#3498db;"></div></div>
+      <div style="flex:1">
+        <div class="frise-head">
+          <div class="frise-head-text"><span class="frise-year">1992</span><span class="frise-title">Traité de Maastricht — l'UE naît ! 🎉</span></div>
+          <svg class="frise-icon" viewBox="0 0 64 54" xmlns="http://www.w3.org/2000/svg">
+            <rect x="6" y="4" width="52" height="36" rx="3" fill="#003F87"/>
+            <g transform="translate(32,22)">
+              <animateTransform attributeName="transform" type="rotate" values="0 32 22;360 32 22" dur="7s" repeatCount="indefinite" additive="replace"/>
+              <text x="-2" y="-13" font-size="7" fill="#FFD700">★</text><text x="7" y="-11" font-size="7" fill="#FFD700">★</text>
+              <text x="12" y="-4" font-size="7" fill="#FFD700">★</text><text x="11" y="4" font-size="7" fill="#FFD700">★</text>
+              <text x="5" y="10" font-size="7" fill="#FFD700">★</text><text x="-2" y="13" font-size="7" fill="#FFD700">★</text>
+              <text x="-9" y="10" font-size="7" fill="#FFD700">★</text><text x="-13" y="4" font-size="7" fill="#FFD700">★</text>
+              <text x="-13" y="-4" font-size="7" fill="#FFD700">★</text><text x="-9" y="-11" font-size="7" fill="#FFD700">★</text>
+              <text x="-2" y="-14" font-size="7" fill="#FFD700">★</text><text x="5" y="-13" font-size="7" fill="#FFD700">★</text>
+            </g>
+            <text x="32" y="26" font-size="9" font-weight="bold" fill="#FFD700" text-anchor="middle">UE</text>
+            <circle cx="16" cy="46" r="2" fill="#FF6B6B"><animate attributeName="cy" values="46;38;46" dur="1.3s" repeatCount="indefinite"/></circle>
+            <circle cx="32" cy="46" r="2" fill="#4DD9AC"><animate attributeName="cy" values="46;37;46" dur="1.6s" begin=".3s" repeatCount="indefinite"/></circle>
+            <circle cx="48" cy="46" r="2" fill="#FFD700"><animate attributeName="cy" values="46;39;46" dur="1.4s" begin=".6s" repeatCount="indefinite"/></circle>
+          </svg>
+        </div>
+        <div class="frise-body">Le grand tournant ! Le <strong>Traité de Maastricht</strong> transforme la CEE en <strong>Union Européenne</strong>. Il crée la citoyenneté européenne, prépare l'euro, et renforce la coopération en politique étrangère et en justice.</div>
+      </div>
+    </div>
+
+    <!-- 1995 Schengen en vigueur -->
+    <div class="frise-step" onclick="toggleFrise(this)">
+      <div class="frise-dot-wrap"><div class="frise-dot" style="background:#9b59b6;"></div></div>
+      <div style="flex:1">
+        <div class="frise-head">
+          <div class="frise-head-text"><span class="frise-year">1995</span><span class="frise-title">Schengen en vigueur + 15 membres</span></div>
+          <svg class="frise-icon" viewBox="0 0 64 54" xmlns="http://www.w3.org/2000/svg">
+            <rect x="0" y="38" width="64" height="16" fill="#90a4ae"/>
+            <line x1="0" y1="46" x2="64" y2="46" stroke="white" stroke-width="1.5" stroke-dasharray="6,5"/>
+            <rect x="30" y="20" width="4" height="20" rx="1" fill="#607d8b"/>
+            <rect x="32" y="22" width="26" height="4" rx="1" fill="#e74c3c" transform-origin="32 24"><animateTransform attributeName="transform" type="rotate" values="0 32 24;-68 32 24;0 32 24" dur="3s" repeatCount="indefinite"/></rect>
+            <g><animate attributeName="transform" type="translate" values="-20,0;80,0" dur="3s" repeatCount="indefinite" additive="sum"/>
+              <rect x="2" y="28" width="20" height="11" rx="3" fill="#9b59b6"/>
+              <rect x="5" y="23" width="13" height="8" rx="2" fill="#a569bd"/>
+              <circle cx="6" cy="41" r="3" fill="#333"/><circle cx="18" cy="41" r="3" fill="#333"/>
+            </g>
+            <text x="4" y="36" font-size="7" fill="#1a7a5e" font-weight="bold">LIBRE!</text>
+          </svg>
+        </div>
+        <div class="frise-body">L'Autriche, la Finlande et la Suède rejoignent l'UE, portant le total à <strong>15 membres</strong>. La même année, l'espace Schengen entre en vigueur : plus de contrôles aux frontières entre 7 pays fondateurs !
+        <div class="frise-pays"><span>🇦🇹 Autriche</span><span>🇫🇮 Finlande</span><span>🇸🇪 Suède</span></div></div>
+      </div>
+    </div>
+
+    <!-- 2002 Euro -->
+    <div class="frise-step" onclick="toggleFrise(this)">
+      <div class="frise-dot-wrap"><div class="frise-dot" style="background:#f1c40f;"></div></div>
+      <div style="flex:1">
+        <div class="frise-head">
+          <div class="frise-head-text"><span class="frise-year">2002</span><span class="frise-title">L'euro dans les portefeuilles ! 💶</span></div>
+          <svg class="frise-icon" viewBox="0 0 64 54" xmlns="http://www.w3.org/2000/svg">
+            <rect x="4" y="26" width="24" height="20" rx="3" fill="#795548"/>
+            <rect x="4" y="26" width="24" height="8" rx="3" fill="#8d6e63"/>
+            <circle cx="17" cy="32" r="3" fill="#607d8b" stroke="#a1887f" stroke-width="1"/>
+            <ellipse cx="46" cy="26" rx="14" ry="14" fill="#FFD700" stroke="#f39c12" stroke-width="2"><animate attributeName="rx" values="14;2;14" dur="2s" repeatCount="indefinite"/></ellipse>
+            <text x="46" y="31" font-size="14" text-anchor="middle" fill="#e67e22" font-weight="bold">€<animate attributeName="opacity" values="1;0;1" dur="2s" repeatCount="indefinite"/></text>
+            <text x="8" y="52" font-size="8" fill="#aaa">₣ DM ₤</text>
+            <line x1="6" y1="50" x2="30" y2="47" stroke="#FF6B6B" stroke-width="1.5"/>
+          </svg>
+        </div>
+        <div class="frise-body">Le 1ᵉʳ janvier 2002, les pièces et billets en <strong>euros</strong> entrent en circulation dans 12 pays. Les monnaies nationales (franc, mark, lire…) disparaissent. C'est la plus grande conversion monétaire de l'histoire ! Aujourd'hui <strong>20 pays</strong> utilisent l'euro.</div>
+      </div>
+    </div>
+
+    <!-- 2004–07 Grand élargissement -->
+    <div class="frise-step" onclick="toggleFrise(this)">
+      <div class="frise-dot-wrap"><div class="frise-dot" style="background:#e91e63;"></div></div>
+      <div style="flex:1">
+        <div class="frise-head">
+          <div class="frise-head-text"><span class="frise-year">2004–07</span><span class="frise-title">Grand Élargissement — vers l'Est ! +12</span></div>
+          <svg class="frise-icon" viewBox="0 0 64 54" xmlns="http://www.w3.org/2000/svg">
+            <text x="22" y="38" font-size="28" text-anchor="middle">🗺️</text>
+            <circle cx="8" cy="4" r="3" fill="#FF6B6B"><animate attributeName="cy" values="4;54" dur="1.4s" repeatCount="indefinite"/></circle>
+            <circle cx="20" cy="4" r="2" fill="#FFD700"><animate attributeName="cy" values="4;54" dur="1.7s" begin=".2s" repeatCount="indefinite"/></circle>
+            <circle cx="36" cy="4" r="3" fill="#4DD9AC"><animate attributeName="cy" values="4;54" dur="1.3s" begin=".5s" repeatCount="indefinite"/></circle>
+            <circle cx="50" cy="4" r="2" fill="#4FC3F7"><animate attributeName="cy" values="4;54" dur="1.9s" begin=".3s" repeatCount="indefinite"/></circle>
+            <circle cx="60" cy="4" r="3" fill="#9b59b6"><animate attributeName="cy" values="4;54" dur="1.5s" begin=".7s" repeatCount="indefinite"/></circle>
+            <text x="50" y="38" font-size="14" font-weight="bold" fill="#e91e63" text-anchor="middle">+12<animate attributeName="font-size" values="12;16;12" dur="1.5s" repeatCount="indefinite"/></text>
+          </svg>
+        </div>
+        <div class="frise-body">La plus grande vague d'adhésion : <strong>12 pays</strong> d'Europe centrale et orientale. L'UE passe de 15 à <strong>27 membres</strong>. Après des décennies de rideau de fer, ces pays retrouvent l'Europe démocratique.
+        <div class="frise-pays"><span>🇵🇱 Pologne</span><span>🇨🇿 Tchéquie</span><span>🇸🇰 Slovaquie</span><span>🇭🇺 Hongrie</span><span>🇸🇮 Slovénie</span><span>🇪🇪 Estonie</span><span>🇱🇻 Lettonie</span><span>🇱🇹 Lituanie</span><span>🇨🇾 Chypre</span><span>🇲🇹 Malte</span><span>🇷🇴 Roumanie (2007)</span><span>🇧🇬 Bulgarie (2007)</span></div></div>
+      </div>
+    </div>
+
+    <!-- 2007 Lisbonne -->
+    <div class="frise-step" onclick="toggleFrise(this)">
+      <div class="frise-dot-wrap"><div class="frise-dot" style="background:#607d8b;"></div></div>
+      <div style="flex:1">
+        <div class="frise-head">
+          <div class="frise-head-text"><span class="frise-year">2007</span><span class="frise-title">Traité de Lisbonne — modernisation</span></div>
+          <svg class="frise-icon" viewBox="0 0 64 54" xmlns="http://www.w3.org/2000/svg">
+            <rect x="10" y="6" width="44" height="40" rx="3" fill="#607d8b"/>
+            <rect x="13" y="6" width="38" height="40" rx="2" fill="#eceff1"/>
+            <rect x="10" y="6" width="6" height="40" rx="3" fill="#455a64"/>
+            <line x1="19" y1="18" x2="46" y2="18" stroke="#ccc" stroke-width="1.5"/>
+            <line x1="19" y1="24" x2="43" y2="24" stroke="#ccc" stroke-width="1.5"/>
+            <line x1="19" y1="30" x2="40" y2="30" stroke="#ccc" stroke-width="1.5"/>
+            <rect x="17" y="34" width="28" height="7" rx="2" fill="#FFD70066"/>
+            <text x="31" y="40" font-size="7" text-anchor="middle" fill="#607d8b" font-weight="bold">Art. 50</text>
+            <g><animateTransform attributeName="transform" type="translate" values="0,0;5,5;0,0" dur="1.8s" repeatCount="indefinite"/>
+              <rect x="44" y="10" width="3" height="12" rx="1" fill="#FFD700" transform="rotate(30,45,16)"/>
+              <polygon points="44,21 47,21 45,25" fill="#f9a825" transform="rotate(30,45,16)"/>
+            </g>
+          </svg>
+        </div>
+        <div class="frise-body">Ce traité modernise l'UE pour 27 pays. Il crée le <strong>Président permanent du Conseil européen</strong>, renforce le Parlement, et pour la première fois reconnaît officiellement qu'un pays peut <em>quitter</em> l'UE (article 50).</div>
+      </div>
+    </div>
+
+    <!-- 2013 Croatie -->
+    <div class="frise-step" onclick="toggleFrise(this)">
+      <div class="frise-dot-wrap"><div class="frise-dot" style="background:#795548;"></div></div>
+      <div style="flex:1">
+        <div class="frise-head">
+          <div class="frise-head-text"><span class="frise-year">2013</span><span class="frise-title">La Croatie, 28ᵉ et dernier membre 🇭🇷</span></div>
+          <svg class="frise-icon" viewBox="0 0 64 54" xmlns="http://www.w3.org/2000/svg">
+            <rect x="0" y="36" width="64" height="18" fill="#4FC3F7" opacity=".4"/>
+            <g><animateTransform attributeName="transform" type="translate" values="0,0;0,-4;0,0" dur="2s" repeatCount="indefinite"/>
+              <circle cx="22" cy="14" r="5" fill="none" stroke="#795548" stroke-width="2.5"/>
+              <line x1="22" y1="19" x2="22" y2="34" stroke="#795548" stroke-width="2.5"/>
+              <line x1="14" y1="23" x2="30" y2="23" stroke="#795548" stroke-width="2.5"/>
+              <path d="M14,34 Q10,30 14,27" fill="none" stroke="#795548" stroke-width="2"/>
+              <path d="M30,34 Q34,30 30,27" fill="none" stroke="#795548" stroke-width="2"/>
+            </g>
+            <text x="42" y="30" font-size="18">🇭🇷</text>
+            <text x="4" y="30" font-size="14">🇪🇺</text>
+            <text x="46" y="16" font-size="11" font-weight="bold" fill="#4DD9AC"><animate attributeName="opacity" values=".5;1;.5" dur="1.5s" repeatCount="indefinite"/>+1</text>
+          </svg>
+        </div>
+        <div class="frise-body">La <strong>Croatie</strong> devient le 28ᵉ membre de l'UE le 1ᵉʳ juillet 2013. C'est à ce jour le dernier pays à avoir rejoint l'Union. D'autres pays sont candidats : Turquie, Serbie, Monténégro, Ukraine, Moldavie…
+        <div class="frise-pays"><span>🇭🇷 Croatie</span></div></div>
+      </div>
+    </div>
+
+    <!-- 2020 Brexit -->
+    <div class="frise-step" onclick="toggleFrise(this)">
+      <div class="frise-dot-wrap"><div class="frise-dot" style="background:#f44336;"></div></div>
+      <div style="flex:1">
+        <div class="frise-head">
+          <div class="frise-head-text"><span class="frise-year">2020</span><span class="frise-title">Brexit — le Royaume-Uni quitte l'UE 😢</span></div>
+          <svg class="frise-icon" viewBox="0 0 64 54" xmlns="http://www.w3.org/2000/svg">
+            <text x="4" y="32" font-size="16">🇪🇺</text>
+            <text x="20" y="34" font-size="11">😢</text>
+            <line x1="33" y1="26" x2="42" y2="26" stroke="#f44336" stroke-width="2"/>
+            <polygon points="42,22 50,26 42,30" fill="#f44336"/>
+            <g><animateTransform attributeName="transform" type="translate" values="0,0;12,0;0,0" dur="2.5s" repeatCount="indefinite"/>
+              <rect x="46" y="18" width="15" height="12" rx="2" fill="#cc0000"/>
+              <rect x="50" y="15" width="5" height="4" rx="1" fill="#888"/>
+              <line x1="46" y1="24" x2="61" y2="24" stroke="#990000" stroke-width="1"/>
+              <text x="47" y="29" font-size="8">🇬🇧</text>
+              <circle cx="50" cy="32" r="2" fill="#555"/><circle cx="58" cy="32" r="2" fill="#555"/>
+            </g>
+            <text x="26" y="50" font-size="11">👋</text>
+          </svg>
+        </div>
+        <div class="frise-body">Après un référendum en 2016 (52% pour le "Leave"), le <strong>Royaume-Uni quitte officiellement l'UE</strong> le 31 janvier 2020. C'est la première fois qu'un État membre quitte l'Union. L'UE revient à <strong>27 membres</strong>.</div>
+      </div>
+    </div>
+
+  </div>
+  <div class="nav-row"><button class="btn btn-ghost" onclick="prevSlide()">← Retour</button><button class="btn btn-primary" onclick="nextSlide()">🗺️ Les cercles européens →</button></div>
+</div>
+</div>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- SLIDE 3 : Cercles d'appartenance -->
+<!-- ══════════════════════════════════════════════ -->
+<div class="slide" id="slide-3">
+<div class="card">
+  <span class="tag" style="background:#4DD9AC33;color:#1a6e52;">Géographie politique 🗺️</span>
+  <h2>L'Europe, ce n'est pas qu'une seule chose !</h2>
+  <p style="font-size:13px;">Il existe <strong>plusieurs "clubs" européens</strong> qui ne regroupent pas les mêmes pays. Clique sur un pays pour voir à quels clubs il appartient !</p>
+
+  <div class="filter-btns">
+    <button class="filter-btn active" style="background:#003F8799;color:white;" onclick="filterCircle('ue',this)">🇪🇺 UE (27)</button>
+    <button class="filter-btn" style="background:#4DD9AC99;color:white;" onclick="filterCircle('schengen',this)">✈️ Schengen (29)</button>
+    <button class="filter-btn" style="background:#FFD70099;color:#333;" onclick="filterCircle('euro',this)">💶 Zone Euro (20)</button>
+    <button class="filter-btn" style="background:#FF6B6B99;color:white;" onclick="filterCircle('otan',this)">🛡️ OTAN (32)</button>
+  </div>
+
+  <div id="country-pills" style="margin:8px 0;"></div>
+  <div class="tooltip-box" id="country-tooltip"></div>
+
+  <div style="background:#f0f4ff;border-radius:12px;padding:10px 14px;margin-top:8px;">
+    <p style="font-size:12px;margin:0;">💡 <strong>Le savais-tu ?</strong> La Suisse et la Norvège ne sont pas membres de l'UE, mais elles font partie de l'espace Schengen ! Et l'euro est utilisé au Vatican ou à Monaco sans qu'ils soient membres de l'UE.</p>
+  </div>
+
+  <div class="nav-row"><button class="btn btn-ghost" onclick="prevSlide()">← Retour</button><button class="btn btn-primary" onclick="nextSlide()">🧩 Quiz pays →</button></div>
+</div>
+</div>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- SLIDE 4 : Quiz pays / espaces -->
+<!-- ══════════════════════════════════════════════ -->
+<div class="slide" id="slide-4">
+<div class="card">
+  <span class="tag" style="background:#FF6B6B33;color:#c0392b;">Quiz spécial pays 🌍</span>
+  <h2>À quel espace appartient ce pays ?</h2>
+  <p style="font-size:13px;">3 questions sur les différents cercles européens. +1⭐ par bonne réponse !</p>
+
+  <div style="margin:12px 0;">
+    <div id="pays-q1" style="margin-bottom:14px;">
+      <p style="font-weight:700;font-size:14px;margin-bottom:6px;">🇳🇴 La Norvège est-elle membre de l'UE ?</p>
+      <div class="quiz-options" id="pays-q1-options">
+        <button class="quiz-btn" onclick="checkAnswer(this,false,'pays-q1','❌ Non ! La Norvège a refusé d\'entrer dans l\'UE par référendum (1972 et 1994).')">✅ Oui, elle est dans l'UE</button>
+        <button class="quiz-btn" onclick="checkAnswer(this,true,'pays-q1','🎉 Exact ! La Norvège n\'est PAS dans l\'UE mais elle est dans l\'espace Schengen et dans l\'Espace Économique Européen (EEE). Elle respecte les règles européennes sans voter !')">❌ Non, elle n'est pas dans l'UE</button>
+      </div>
+      <div class="feedback" id="feedback-pays-q1"></div>
+    </div>
+
+    <div id="pays-q2" style="margin-bottom:14px;">
+      <p style="font-weight:700;font-size:14px;margin-bottom:6px;">🇨🇭 La Suisse fait-elle partie de l'espace Schengen ?</p>
+      <div class="quiz-options" id="pays-q2-options">
+        <button class="quiz-btn" onclick="checkAnswer(this,true,'pays-q2','🎉 Oui ! La Suisse n\'est pas dans l\'UE (elle a refusé par référendum en 1992) mais elle a rejoint l\'espace Schengen en 2008. Tu peux y entrer sans contrôle de passeport depuis la France !')">✅ Oui, elle est dans Schengen</button>
+        <button class="quiz-btn" onclick="checkAnswer(this,false,'pays-q2','❌ Si ! La Suisse a signé les accords de Schengen en 2008, même sans être dans l\'UE.')">❌ Non, frontières fermées</button>
+      </div>
+      <div class="feedback" id="feedback-pays-q2"></div>
+    </div>
+
+    <div id="pays-q3">
+      <p style="font-weight:700;font-size:14px;margin-bottom:6px;">🇸🇪 La Suède utilise-t-elle l'euro ?</p>
+      <div class="quiz-options" id="pays-q3-options">
+        <button class="quiz-btn" onclick="checkAnswer(this,false,'pays-q3','❌ Non ! La Suède est dans l\'UE et dans Schengen, mais elle a voté NON à l\'euro en 2003 et garde sa couronne suédoise (SEK). C\'est son droit en tant que membre UE !')">✅ Oui, la monnaie est l'euro</button>
+        <button class="quiz-btn" onclick="checkAnswer(this,true,'pays-q3','🎉 Exact ! La Suède utilise la couronne suédoise (SEK). Elle est membre de l\'UE mais a refusé l\'euro par référendum en 2003. Elle pourrait encore l\'adopter un jour !')">❌ Non, elle garde la couronne</button>
+      </div>
+      <div class="feedback" id="feedback-pays-q3"></div>
+    </div>
+  </div>
+
+  <div class="nav-row"><button class="btn btn-ghost" onclick="prevSlide()">← Retour</button><button class="btn btn-primary" onclick="nextSlide()">Les institutions →</button></div>
+</div>
+</div>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- SLIDE 5 : Flip cards institutions -->
+<!-- ══════════════════════════════════════════════ -->
+<div class="slide" id="slide-5">
+<div class="card">
+  <span class="tag" style="background:#4DD9AC33;color:#1a6e52;">Institutions</span>
+  <h2>Les 4 grandes institutions 🏛️</h2>
+  <p>Clique sur chaque carte pour en découvrir le rôle !</p>
+  <div class="inst-grid">
+    <div class="inst-card" style="background:#EEF4FF;" onclick="revealCard(this)"><h3>🏛️ Le Parlement européen</h3><p>Les 705 eurodéputés représentent <em>les citoyens</em>. Ils votent les lois et le budget. Siège à Strasbourg et Bruxelles.</p><div class="reveal-hint">👆 Clique pour découvrir</div></div>
+    <div class="inst-card" style="background:#FFF9E6;" onclick="revealCard(this)"><h3>🤝 Le Conseil de l'UE</h3><p>Les ministres des gouvernements nationaux représentent <em>les États membres</em> et co-décident les lois.</p><div class="reveal-hint">👆 Clique pour découvrir</div></div>
+    <div class="inst-card" style="background:#F0FFF8;" onclick="revealCard(this)"><h3>⚙️ La Commission européenne</h3><p>Le "gouvernement" de l'UE. Elle propose les lois et veille à leur application. Un commissaire par pays.</p><div class="reveal-hint">👆 Clique pour découvrir</div></div>
+    <div class="inst-card" style="background:#FFF0F0;" onclick="revealCard(this)"><h3>⚖️ La Cour de Justice (CJUE)</h3><p>Elle s'assure que le droit européen est respecté. Le "juge arbitre" entre les pays et les institutions.</p><div class="reveal-hint">👆 Clique pour découvrir</div></div>
+  </div>
+  <div id="cards-progress" style="font-size:12px;color:#888;text-align:center;">0 / 4 cartes découvertes</div>
+  <div class="nav-row"><button class="btn btn-ghost" onclick="prevSlide()">← Retour</button><button class="btn btn-primary" onclick="nextSlide()">Comment ça vote ? →</button></div>
+</div>
+</div>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- SLIDE 6 : Processus législatif -->
+<!-- ══════════════════════════════════════════════ -->
+<div class="slide" id="slide-6">
+<div class="card">
+  <span class="tag" style="background:#9B59B633;color:#6c3483;">Fonctionnement</span>
+  <h2>Comment naît une loi européenne ? ⚙️</h2>
+  <div style="display:flex;flex-direction:column;gap:7px;margin:10px 0;">
+    <div style="display:flex;align-items:center;gap:10px;background:#f0f4ff;border-radius:14px;padding:10px 13px;">
+      <span style="font-size:22px;flex-shrink:0;">1️⃣</span>
+      <div><strong style="color:#003F87;font-size:13px;">La Commission propose</strong><br><span style="font-size:12px;color:#555;">Elle rédige un texte sur l'environnement, le numérique, etc.</span></div>
+    </div>
+    <div style="text-align:center;font-size:15px;">⬇️</div>
+    <div style="display:flex;align-items:center;gap:10px;background:#fff9e6;border-radius:14px;padding:10px 13px;">
+      <span style="font-size:22px;flex-shrink:0;">2️⃣</span>
+      <div><strong style="color:#8B6914;font-size:13px;">Le Parlement &amp; le Conseil débattent</strong><br><span style="font-size:12px;color:#555;">Ils lisent, modifient et négocient pendant des mois !</span></div>
+    </div>
+    <div style="text-align:center;font-size:15px;">⬇️</div>
+    <div style="display:flex;align-items:center;gap:10px;background:#f0fff8;border-radius:14px;padding:10px 13px;">
+      <span style="font-size:22px;flex-shrink:0;">3️⃣</span>
+      <div><strong style="color:#1a6e52;font-size:13px;">Accord &amp; publication</strong><br><span style="font-size:12px;color:#555;">La loi est adoptée. Tous les pays membres doivent la respecter !</span></div>
+    </div>
+  </div>
+  <div style="background:#FFF0F8;border-radius:12px;padding:8px 12px;border-left:4px solid var(--coral);">
+    <p style="font-size:12px;margin:0;">💡 <strong>Le savais-tu ?</strong> Ce processus s'appelle la <em>procédure législative ordinaire</em>.</p>
+  </div>
+  <div class="nav-row"><button class="btn btn-ghost" onclick="prevSlide()">← Retour</button><button class="btn btn-primary" onclick="nextSlide()">🧠 Quiz →</button></div>
+</div>
+</div>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- SLIDE 7 : Quiz 1 -->
+<!-- ══════════════════════════════════════════════ -->
+<div class="slide" id="slide-7">
+<div class="card">
+  <span class="tag" style="background:#FF6B6B33;color:#c0392b;">Quiz 1/3</span>
+  <h2>🧠 Combien y a-t-il de pays membres dans l'UE ?</h2>
+  <div class="quiz-options" id="q1-options">
+    <button class="quiz-btn" onclick="checkAnswer(this,false,'q1','❌ Non ! Depuis le Brexit de 2020, le Royaume-Uni n\'est plus dans l\'UE.')">🇬🇧 28 pays</button>
+    <button class="quiz-btn" onclick="checkAnswer(this,true,'q1','🎉 Bravo ! L\'UE compte 27 pays depuis le Brexit en 2020.')">✅ 27 pays</button>
+    <button class="quiz-btn" onclick="checkAnswer(this,false,'q1','❌ Pas tout à fait !')">🤔 25 pays</button>
+    <button class="quiz-btn" onclick="checkAnswer(this,false,'q1','❌ Non ! L\'UE n\'en compte que 27.')">🗺️ 44 pays</button>
+  </div>
+  <div class="feedback" id="feedback-q1"></div>
+  <div class="nav-row"><button class="btn btn-ghost" onclick="prevSlide()">← Retour</button><button class="btn btn-primary" onclick="nextSlide()">Question suivante →</button></div>
+</div>
+</div>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- SLIDE 8 : Quiz 2 -->
+<!-- ══════════════════════════════════════════════ -->
+<div class="slide" id="slide-8">
+<div class="card">
+  <span class="tag" style="background:#FF6B6B33;color:#c0392b;">Quiz 2/3</span>
+  <h2>🧠 Qui propose les nouvelles lois européennes ?</h2>
+  <div class="quiz-options" id="q2-options">
+    <button class="quiz-btn" onclick="checkAnswer(this,false,'q2','❌ Le Parlement vote les lois mais ne les propose pas directement.')">🏛️ Le Parlement européen</button>
+    <button class="quiz-btn" onclick="checkAnswer(this,true,'q2','🎉 Exact ! La Commission a le droit d\'initiative législative.')">⚙️ La Commission européenne</button>
+    <button class="quiz-btn" onclick="checkAnswer(this,false,'q2','❌ Le Conseil co-décide, mais ne propose pas les lois.')">🤝 Le Conseil de l\'UE</button>
+    <button class="quiz-btn" onclick="checkAnswer(this,false,'q2','❌ La CJUE est le tribunal de l\'Europe.')">⚖️ La Cour de justice</button>
+  </div>
+  <div class="feedback" id="feedback-q2"></div>
+  <div class="nav-row"><button class="btn btn-ghost" onclick="prevSlide()">← Retour</button><button class="btn btn-primary" onclick="nextSlide()">Dernière question →</button></div>
+</div>
+</div>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- SLIDE 9 : Quiz 3 -->
+<!-- ══════════════════════════════════════════════ -->
+<div class="slide" id="slide-9">
+<div class="card">
+  <span class="tag" style="background:#FF6B6B33;color:#c0392b;">Quiz 3/3</span>
+  <h2>🧠 Où siège principalement le Parlement européen ?</h2>
+  <div class="quiz-options" id="q3-options">
+    <button class="quiz-btn" onclick="checkAnswer(this,false,'q3','❌ Bruxelles est aussi utilisée, mais le siège officiel est ailleurs.')">🇧🇪 Bruxelles</button>
+    <button class="quiz-btn" onclick="checkAnswer(this,false,'q3','❌ Luxembourg accueille la Cour de Justice.')">🇱🇺 Luxembourg</button>
+    <button class="quiz-btn" onclick="checkAnswer(this,true,'q3','🎉 Oui ! Le siège officiel du Parlement est à Strasbourg, en France !')">🇫🇷 Strasbourg</button>
+    <button class="quiz-btn" onclick="checkAnswer(this,false,'q3','❌ Genève est en Suisse, hors de l\'UE.')">🇨🇭 Genève</button>
+  </div>
+  <div class="feedback" id="feedback-q3"></div>
+  <div class="nav-row"><button class="btn btn-ghost" onclick="prevSlide()">← Retour</button><button class="btn btn-primary" onclick="nextSlide()">Jeu de correspondance →</button></div>
+</div>
+</div>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- SLIDE 10 : Matching -->
+<!-- ══════════════════════════════════════════════ -->
+<div class="slide" id="slide-10">
+<div class="card">
+  <span class="tag" style="background:#9B59B633;color:#6c3483;">Jeu 🎮</span>
+  <h2>Associe chaque ville à son institution !</h2>
+  <p style="font-size:13px;">Clique sur une ville, puis sur l'institution correspondante.</p>
+  <div class="match-container" id="match-game">
+    <div class="match-col" id="cities-col">
+      <div class="match-item city" data-id="stras" onclick="selectMatch(this)">📍 Strasbourg</div>
+      <div class="match-item city" data-id="bxl" onclick="selectMatch(this)">📍 Bruxelles</div>
+      <div class="match-item city" data-id="lux" onclick="selectMatch(this)">📍 Luxembourg</div>
+      <div class="match-item city" data-id="frank" onclick="selectMatch(this)">📍 Francfort</div>
+    </div>
+    <div class="match-col" id="inst-col">
+      <div class="match-item institution" data-id="bxl" onclick="selectMatch(this)">⚙️ Commission européenne</div>
+      <div class="match-item institution" data-id="lux" onclick="selectMatch(this)">⚖️ Cour de Justice</div>
+      <div class="match-item institution" data-id="frank" onclick="selectMatch(this)">🏦 Banque Centrale Européenne</div>
+      <div class="match-item institution" data-id="stras" onclick="selectMatch(this)">🏛️ Parlement européen</div>
+    </div>
+  </div>
+  <div id="match-score" style="text-align:center;font-weight:700;font-size:13px;color:#888;">0 / 4 associations trouvées</div>
+  <div class="nav-row"><button class="btn btn-ghost" onclick="prevSlide()">← Retour</button><button class="btn btn-primary" onclick="nextSlide()">🎲 Dés →</button></div>
+</div>
+</div>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- SLIDE 11 : Dice -->
+<!-- ══════════════════════════════════════════════ -->
+<div class="slide" id="slide-11">
+<div class="card">
+  <span class="tag" style="background:#FF8C4233;color:#c25000;">Jeu des dés 🎲</span>
+  <h2>Lance le dé et réponds !</h2>
+  <p style="font-size:13px;">Lance le dé pour obtenir une question. Réfléchis, puis révèle la réponse !</p>
+  <div class="dice-container">
+    <div class="dice" id="dice-el" onclick="rollDice()">🎲</div>
+    <br><button class="btn btn-secondary" onclick="rollDice()" style="margin-top:8px;">🎲 Lancer le dé !</button>
+  </div>
+  <div class="dice-question" id="dice-question">Lance le dé pour obtenir une question sur l'Europe !</div>
+  <button class="btn btn-ghost" id="dice-reveal-btn" onclick="revealDiceAnswer()" style="display:none;margin-top:8px;width:100%;">💡 Voir la réponse</button>
+  <div class="dice-answer" id="dice-answer"></div>
+  <div id="dice-star-msg" style="display:none;text-align:center;color:#1a7a5e;font-weight:700;margin-top:6px;font-size:13px;">+1 ⭐ bien joué !</div>
+  <div class="nav-row"><button class="btn btn-ghost" onclick="prevSlide()">← Retour</button><button class="btn btn-primary" onclick="nextSlide()">✅ Vrai ou Faux →</button></div>
+</div>
+</div>
+
+<!-- SLIDE 12 : True/False -->
+<!-- ══════════════════════════════════════════════ -->
+<div class="slide" id="slide-12">
+<div class="card">
+  <span class="tag" style="background:#FF6B6B33;color:#c0392b;">Vrai ou Faux ✅❌</span>
+  <h2>Vrai ou Faux ?</h2>
+  <p style="font-size:13px;">Clique sur VRAI ou FAUX pour chaque affirmation !</p>
+  <div class="tf-statements" id="tf-game">
+    <div class="tf-stmt" data-answer="faux"><span>La Suisse est membre de l'Union Européenne.</span><div class="tf-btns"><button class="tf-btn vrai" onclick="answerTF(this,true)">VRAI</button><button class="tf-btn faux" onclick="answerTF(this,false)">FAUX</button></div></div>
+    <div class="tf-stmt" data-answer="vrai"><span>L'euro a été introduit en 2002.</span><div class="tf-btns"><button class="tf-btn vrai" onclick="answerTF(this,true)">VRAI</button><button class="tf-btn faux" onclick="answerTF(this,false)">FAUX</button></div></div>
+    <div class="tf-stmt" data-answer="faux"><span>Le Parlement européen siège uniquement à Bruxelles.</span><div class="tf-btns"><button class="tf-btn vrai" onclick="answerTF(this,true)">VRAI</button><button class="tf-btn faux" onclick="answerTF(this,false)">FAUX</button></div></div>
+    <div class="tf-stmt" data-answer="vrai"><span>La Commission européenne propose les nouvelles lois.</span><div class="tf-btns"><button class="tf-btn vrai" onclick="answerTF(this,true)">VRAI</button><button class="tf-btn faux" onclick="answerTF(this,false)">FAUX</button></div></div>
+    <div class="tf-stmt" data-answer="vrai"><span>La Norvège est dans l'espace Schengen sans être dans l'UE.</span><div class="tf-btns"><button class="tf-btn vrai" onclick="answerTF(this,true)">VRAI</button><button class="tf-btn faux" onclick="answerTF(this,false)">FAUX</button></div></div>
+  </div>
+  <div id="tf-result" style="display:none;margin-top:8px;padding:10px;border-radius:12px;font-weight:700;font-size:14px;"></div>
+  <div class="nav-row"><button class="btn btn-ghost" onclick="prevSlide()">← Retour</button><button class="btn btn-primary" onclick="nextSlide()">📝 Texte à trous →</button></div>
+</div>
+</div>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- SLIDE 13 : Blanks -->
+<!-- ══════════════════════════════════════════════ -->
+<div class="slide" id="slide-13">
+<div class="card">
+  <span class="tag" style="background:#FFD70033;color:#8B6914;">Texte à trous 📝</span>
+  <h2>Complète le texte !</h2>
+  <p style="font-size:13px;">Clique sur un mot de la banque, puis sur un trou pour le placer.</p>
+  <div class="word-bank" id="word-bank">
+    <div class="word-chip" data-word="27" onclick="selectWord(this)">27</div>
+    <div class="word-chip" data-word="Commission" onclick="selectWord(this)">Commission</div>
+    <div class="word-chip" data-word="Parlement" onclick="selectWord(this)">Parlement</div>
+    <div class="word-chip" data-word="euro" onclick="selectWord(this)">euro</div>
+    <div class="word-chip" data-word="Maastricht" onclick="selectWord(this)">Maastricht</div>
+  </div>
+  <div class="blank-sentence">
+    L'Union Européenne compte <span class="blank" data-answer="27" onclick="placeWord(this)">___</span> pays membres.
+    Le Traité de <span class="blank" data-answer="Maastricht" onclick="placeWord(this)">___</span> de 1992 a créé l'UE.
+    La <span class="blank" data-answer="Commission" onclick="placeWord(this)">___</span> européenne propose les lois,
+    que le <span class="blank" data-answer="Parlement" onclick="placeWord(this)">___</span> et le Conseil votent.
+    La monnaie commune s'appelle l'<span class="blank" data-answer="euro" onclick="placeWord(this)">___</span>.
+  </div>
+  <div id="blanks-result" style="display:none;padding:8px;border-radius:12px;font-weight:700;font-size:14px;margin-top:6px;"></div>
+  <button class="btn btn-secondary" onclick="checkBlanks()" style="width:100%;margin-top:6px;">Vérifier mes réponses ✓</button>
+  <div class="nav-row"><button class="btn btn-ghost" onclick="prevSlide()">← Retour</button><button class="btn btn-primary" onclick="nextSlide()">🔍 Zoom institutions →</button></div>
+</div>
+</div>
+
+<!-- SLIDE 14 : Score final -->
+<!-- ══════════════════════════════════════════════ -->
+<div class="slide" id="slide-14">
+<div class="card" style="text-align:center;">
+  <div id="final-stars" style="font-size:38px;margin-bottom:8px;letter-spacing:3px;"></div>
+  <h2 id="final-title">Félicitations ! 🎉</h2>
+  <p id="final-msg" style="font-size:14px;"></p>
+  <div class="score-circle">
+    <span class="score-num" id="final-num">0</span>
+    <span class="score-label">étoiles / 9</span>
+  </div>
+  <div style="background:#f0f4ff;border-radius:14px;padding:13px;margin:12px 0;text-align:left;">
+    <p style="font-size:13px;margin-bottom:5px;"><strong>🔑 À retenir :</strong></p>
+    <p style="font-size:12px;">• L'UE = <strong>27 pays</strong> · Schengen = <strong>29</strong> (dont Suisse, Norvège…) · Zone Euro = <strong>20</strong></p>
+    <p style="font-size:12px;">• La <strong>Commission</strong> propose les lois (Bruxelles)</p>
+    <p style="font-size:12px;">• Le <strong>Parlement</strong> et le <strong>Conseil</strong> les votent</p>
+    <p style="font-size:12px;">• La <strong>CJUE</strong> = tribunal (Luxembourg) · <strong>BCE</strong> = monnaie (Francfort)</p>
+    <p style="font-size:12px;">• Fondation : <strong>1957</strong> Rome → <strong>1992</strong> Maastricht → <strong>2020</strong> Brexit</p>
+  </div>
+  <div class="nav-row" style="justify-content:center;gap:10px;">
+    <button class="btn btn-ghost" onclick="restartAll()">🔄 Recommencer</button>
+    <button class="btn btn-secondary" onclick="goToSlide(2)">📜 Revoir l'histoire</button>
+  </div>
+</div>
+</div>
+
+</div><!-- end #app -->
+<script>
+// ═══════════════════ CORE ═══════════════════
+let currentSlide=1,totalSlides=14,stars=0;
+function updateUI(){
+  document.getElementById('progress-bar').style.width=((currentSlide/totalSlides)*100)+'%';
+  document.getElementById('slide-counter').textContent=currentSlide+' / '+totalSlides;
+  document.getElementById('star-count').textContent=stars;
+}
+function goToSlide(n){
+  document.querySelectorAll('.slide').forEach(s=>s.classList.remove('active'));
+  document.getElementById('slide-'+n).classList.add('active');
+  currentSlide=n;updateUI();
+  if(n===2)setTimeout(()=>{},100);
+  if(n===3)initCircles();
+  if(n===14)showFinalScore();
+}
+function nextSlide(){if(currentSlide<totalSlides)goToSlide(currentSlide+1);}
+function prevSlide(){if(currentSlide>1)goToSlide(currentSlide-1);}
+function addStar(){stars++;const el=document.getElementById('stars-display');el.style.transform='scale(1.35)';setTimeout(()=>el.style.transform='',220);updateUI();}
+
+// ═══════════════════ FRISE ═══════════════════
+function toggleFrise(step){
+  const wasOpen=step.classList.contains('open');
+  document.querySelectorAll('.frise-step.open').forEach(s=>s.classList.remove('open'));
+  if(!wasOpen)step.classList.add('open');
+}
+
+// ═══════════════════ CIRCLES / PAYS ═══════════════════
+const pays=[
+  {name:'🇦🇹 Autriche',ue:1,sch:1,euro:1,otan:1},
+  {name:'🇧🇪 Belgique',ue:1,sch:1,euro:1,otan:1},
+  {name:'🇧🇬 Bulgarie',ue:1,sch:1,euro:0,otan:1},
+  {name:'🇨🇾 Chypre',ue:1,sch:0,euro:1,otan:0},
+  {name:'🇭🇷 Croatie',ue:1,sch:1,euro:1,otan:1},
+  {name:'🇩🇰 Danemark',ue:1,sch:1,euro:0,otan:1},
+  {name:'🇪🇪 Estonie',ue:1,sch:1,euro:1,otan:1},
+  {name:'🇫🇮 Finlande',ue:1,sch:1,euro:1,otan:1},
+  {name:'🇫🇷 France',ue:1,sch:1,euro:1,otan:1},
+  {name:'🇩🇪 Allemagne',ue:1,sch:1,euro:1,otan:1},
+  {name:'🇬🇷 Grèce',ue:1,sch:1,euro:1,otan:1},
+  {name:'🇭🇺 Hongrie',ue:1,sch:1,euro:0,otan:1},
+  {name:'🇮🇪 Irlande',ue:1,sch:0,euro:1,otan:0},
+  {name:'🇮🇹 Italie',ue:1,sch:1,euro:1,otan:1},
+  {name:'🇱🇻 Lettonie',ue:1,sch:1,euro:1,otan:1},
+  {name:'🇱🇹 Lituanie',ue:1,sch:1,euro:1,otan:1},
+  {name:'🇱🇺 Luxembourg',ue:1,sch:1,euro:1,otan:1},
+  {name:'🇲🇹 Malte',ue:1,sch:1,euro:1,otan:0},
+  {name:'🇳🇱 Pays-Bas',ue:1,sch:1,euro:1,otan:1},
+  {name:'🇵🇱 Pologne',ue:1,sch:1,euro:0,otan:1},
+  {name:'🇵🇹 Portugal',ue:1,sch:1,euro:1,otan:1},
+  {name:'🇷🇴 Roumanie',ue:1,sch:1,euro:0,otan:1},
+  {name:'🇸🇰 Slovaquie',ue:1,sch:1,euro:1,otan:1},
+  {name:'🇸🇮 Slovénie',ue:1,sch:1,euro:1,otan:1},
+  {name:'🇪🇸 Espagne',ue:1,sch:1,euro:1,otan:1},
+  {name:'🇸🇪 Suède',ue:1,sch:1,euro:0,otan:1},
+  {name:'🇨🇿 Tchéquie',ue:1,sch:1,euro:0,otan:1},
+  // Hors UE mais dans des espaces
+  {name:'🇳🇴 Norvège',ue:0,sch:1,euro:0,otan:1},
+  {name:'🇨🇭 Suisse',ue:0,sch:1,euro:0,otan:0},
+  {name:'🇮🇸 Islande',ue:0,sch:1,euro:0,otan:1},
+  {name:'🇱🇮 Liechtenstein',ue:0,sch:1,euro:0,otan:0},
+  {name:'🇬🇧 Royaume-Uni',ue:0,sch:0,euro:0,otan:1},
+  {name:'🇹🇷 Turquie',ue:0,sch:0,euro:0,otan:1},
+  {name:'🇺🇸 États-Unis',ue:0,sch:0,euro:0,otan:1},
+];
+const circleColors={ue:'#003F87',schengen:'#4DD9AC',euro:'#FFD700',otan:'#FF6B6B'};
+let activeFilter='ue';
+
+function initCircles(){
+  filterCircle('ue',document.querySelector('.filter-btn'));
+}
+
+function filterCircle(type, btn){
+  activeFilter=type;
+  document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  const container=document.getElementById('country-pills');
+  container.innerHTML='';
+  document.getElementById('country-tooltip').classList.remove('show');
+  const filtered=pays.filter(p=>p[type]===1);
+  const color=circleColors[type]||'#003F87';
+  filtered.forEach(p=>{
+    const pill=document.createElement('span');
+    pill.className='country-pill';
+    pill.style.background=color+'22';
+    pill.style.borderColor=color+'88';
+    pill.style.color='#333';
+    pill.textContent=p.name;
+    pill.onclick=()=>showCountryInfo(p);
+    container.appendChild(pill);
+  });
+  const labels={ue:`🇪🇺 ${filtered.length} pays membres de l'UE`,schengen:`✈️ ${filtered.length} pays dans l'espace Schengen`,euro:`💶 ${filtered.length} pays dans la zone euro`,otan:`🛡️ ${filtered.length} pays membres de l'OTAN`};
+  document.getElementById('country-tooltip').textContent='👆 Clique sur un pays pour voir tous ses clubs !';
+  document.getElementById('country-tooltip').classList.add('show');
+  document.getElementById('country-tooltip').style.background='#555';
+}
+
+function showCountryInfo(p){
+  const tt=document.getElementById('country-tooltip');
+  const badges=[];
+  if(p.ue)badges.push('<span style="background:#003F87;padding:2px 8px;border-radius:10px;font-size:11px;margin:2px;display:inline-block;">🇪🇺 UE</span>');
+  else badges.push('<span style="background:#999;padding:2px 8px;border-radius:10px;font-size:11px;margin:2px;display:inline-block;">🇪🇺 Pas dans l\'UE</span>');
+  if(p.sch)badges.push('<span style="background:#4DD9AC;color:#1a4a3a;padding:2px 8px;border-radius:10px;font-size:11px;margin:2px;display:inline-block;">✈️ Schengen</span>');
+  else badges.push('<span style="background:#999;padding:2px 8px;border-radius:10px;font-size:11px;margin:2px;display:inline-block;">✈️ Pas Schengen</span>');
+  if(p.euro)badges.push('<span style="background:#cc9900;padding:2px 8px;border-radius:10px;font-size:11px;margin:2px;display:inline-block;">💶 Zone euro</span>');
+  else badges.push('<span style="background:#999;padding:2px 8px;border-radius:10px;font-size:11px;margin:2px;display:inline-block;">💶 Hors zone euro</span>');
+  if(p.otan)badges.push('<span style="background:#FF6B6B;padding:2px 8px;border-radius:10px;font-size:11px;margin:2px;display:inline-block;">🛡️ OTAN</span>');
+  else badges.push('<span style="background:#999;padding:2px 8px;border-radius:10px;font-size:11px;margin:2px;display:inline-block;">🛡️ Pas OTAN</span>');
+  tt.innerHTML=`<strong>${p.name}</strong><br><div style="margin-top:5px;">${badges.join('')}</div>`;
+  tt.style.background='#1a1a2e';
+  tt.classList.add('show');
+}
+
+// ═══════════════════ FLIP CARDS ═══════════════════
+let revealedCount=0;
+function revealCard(card){
+  if(!card.classList.contains('revealed')){
+    card.classList.add('revealed');revealedCount++;
+    document.getElementById('cards-progress').textContent=revealedCount+' / 4 cartes découvertes';
+    if(revealedCount===4){addStar();document.getElementById('cards-progress').textContent='✅ Toutes découvertes ! +1 ⭐';document.getElementById('cards-progress').style.color='#1a7a5e';}
+  }
+}
+
+// ═══════════════════ QUIZ ═══════════════════
+let quizAnswered={q1:false,q2:false,q3:false,'pays-q1':false,'pays-q2':false,'pays-q3':false};
+function checkAnswer(btn,correct,qId,msg){
+  if(quizAnswered[qId])return;quizAnswered[qId]=true;
+  const opts=document.querySelectorAll('#'+qId+'-options .quiz-btn');
+  opts.forEach(b=>b.disabled=true);
+  if(correct){btn.classList.add('correct');addStar();}
+  else{btn.classList.add('wrong');opts.forEach(b=>{if(b.onclick.toString().includes(',true,'))b.classList.add('correct');});}
+  const fb=document.getElementById('feedback-'+qId);
+  if(fb){fb.textContent=msg;fb.className='feedback show '+(correct?'good':'bad');}
+}
+
+// ═══════════════════ MATCHING ═══════════════════
+let matchSelected=null,matchCount=0;
+function selectMatch(item){
+  if(item.classList.contains('matched'))return;
+  if(!matchSelected){document.querySelectorAll('.match-item.selected').forEach(i=>i.classList.remove('selected'));item.classList.add('selected');matchSelected=item;}
+  else{
+    if(matchSelected===item){item.classList.remove('selected');matchSelected=null;return;}
+    const sameType=(matchSelected.classList.contains('city')&&item.classList.contains('city'))||(matchSelected.classList.contains('institution')&&item.classList.contains('institution'));
+    if(sameType){matchSelected.classList.remove('selected');matchSelected=item;item.classList.add('selected');return;}
+    const city=matchSelected.classList.contains('city')?matchSelected:item;
+    const inst=matchSelected.classList.contains('institution')?matchSelected:item;
+    if(city.dataset.id===inst.dataset.id){
+      city.classList.remove('selected');city.classList.add('matched');inst.classList.remove('selected');inst.classList.add('matched');
+      city.onclick=null;inst.onclick=null;matchCount++;
+      document.getElementById('match-score').textContent=matchCount+' / 4 associations trouvées';
+      if(matchCount===4){addStar();document.getElementById('match-score').textContent='🎉 Parfait ! +1 ⭐';document.getElementById('match-score').style.color='#1a7a5e';}
+    } else {
+      city.classList.add('wrong-flash');inst.classList.add('wrong-flash');
+      setTimeout(()=>{city.classList.remove('wrong-flash','selected');inst.classList.remove('wrong-flash','selected');},400);
+    }
+    matchSelected=null;
+  }
+}
+
+// ═══════════════════ DICE ═══════════════════
+const diceQs=[
+  {face:'1️⃣',q:'Combien de pays sont dans l\'espace Schengen ?',a:'29 pays ! Dont des pays hors UE comme la Suisse, la Norvège, l\'Islande et le Liechtenstein.'},
+  {face:'2️⃣',q:'Quel traité a créé officiellement l\'Union Européenne ?',a:'Le Traité de Maastricht (1992) ! Avant, on parlait de la Communauté Économique Européenne (CEE).'},
+  {face:'3️⃣',q:'Combien de pays utilisent l\'euro aujourd\'hui ?',a:'20 pays utilisent l\'euro (zone euro). Les 7 autres membres UE ont gardé leur monnaie nationale.'},
+  {face:'4️⃣',q:'Quel pays a quitté l\'UE en 2020 et comment s\'appelle cet événement ?',a:'Le Royaume-Uni ! C\'est le "Brexit" (British Exit). C\'était la première fois qu\'un État membre quittait l\'UE.'},
+  {face:'5️⃣',q:'Quelle est la devise officielle de l\'Union Européenne ?',a:'"Unie dans la diversité" ! 27 pays, 24 langues officielles, une solidarité commune.'},
+  {face:'6️⃣',q:'En quelle année les accords de Schengen ont-ils été signés ?',a:'En 1985 ! Signés sur un bateau sur la Moselle, à la frontière entre le Luxembourg, la France et l\'Allemagne. Ils sont entrés en vigueur en 1995.'},
+];
+let diceStarGiven=false;
+function rollDice(){
+  const dice=document.getElementById('dice-el');dice.classList.add('rolling');setTimeout(()=>dice.classList.remove('rolling'),500);
+  const q=diceQs[Math.floor(Math.random()*6)];dice.textContent=q.face;
+  document.getElementById('dice-question').textContent=q.q;
+  document.getElementById('dice-answer').textContent=q.a;document.getElementById('dice-answer').classList.remove('show');
+  document.getElementById('dice-reveal-btn').style.display='block';document.getElementById('dice-star-msg').style.display='none';
+}
+function revealDiceAnswer(){
+  document.getElementById('dice-answer').classList.add('show');document.getElementById('dice-reveal-btn').style.display='none';
+  if(!diceStarGiven){addStar();diceStarGiven=true;document.getElementById('dice-star-msg').style.display='block';}
+}
+
+// ═══════════════════ TRUE/FALSE ═══════════════════
+let tfAnswered=0,tfCorrect=0,tfStarGiven=false;
+function answerTF(btn,isVrai){
+  const stmt=btn.closest('.tf-stmt');if(stmt.dataset.done)return;
+  stmt.dataset.done='1';const userAns=isVrai?'vrai':'faux';
+  stmt.querySelectorAll('.tf-btn').forEach(b=>b.disabled=true);
+  btn.classList.add('selected');tfAnswered++;
+  if(userAns===stmt.dataset.answer){tfCorrect++;stmt.classList.add('correct-stmt');}
+  else stmt.classList.add('wrong-stmt');
+  if(tfAnswered===5){
+    const res=document.getElementById('tf-result');res.style.display='block';
+    if(tfCorrect===5){res.textContent='🎉 Parfait ! 5/5 ! +1 ⭐';res.style.background='#e8fff6';res.style.color='#1a7a5e';if(!tfStarGiven){addStar();tfStarGiven=true;}}
+    else{res.textContent=`${tfCorrect}/5 bonnes réponses. Vert = correct, rose = erreur.`;res.style.background='#fff9e6';res.style.color='#8B6914';}
+  }
+}
+
+// ═══════════════════ BLANKS ═══════════════════
+let selectedWord=null,blanksStarGiven=false;
+function selectWord(chip){
+  if(chip.classList.contains('used'))return;
+  document.querySelectorAll('.word-chip').forEach(c=>c.style.outline='none');
+  selectedWord=chip.dataset.word;chip.style.outline='3px solid var(--blue)';
+}
+function placeWord(blank){
+  if(!selectedWord)return;
+  if(blank.dataset.filled&&blank.dataset.filled!=='')return;
+  blank.textContent=selectedWord;blank.dataset.filled=selectedWord;
+  document.querySelector(`.word-chip[data-word="${selectedWord}"]`).classList.add('used');
+  document.querySelector(`.word-chip[data-word="${selectedWord}"]`).style.outline='none';
+  selectedWord=null;
+}
+function checkBlanks(){
+  const blanks=document.querySelectorAll('.blank');let correct=0;
+  blanks.forEach(b=>{const f=b.dataset.filled||'';
+    if(f===b.dataset.answer){b.classList.add('filled-correct');b.classList.remove('filled-wrong');correct++;}
+    else{b.classList.add('filled-wrong');b.classList.remove('filled-correct');}
+  });
+  const res=document.getElementById('blanks-result');res.style.display='block';
+  if(correct===5){res.textContent='🎉 Bravo ! Tout est correct ! +1 ⭐';res.style.background='#e8fff6';res.style.color='#1a7a5e';if(!blanksStarGiven){addStar();blanksStarGiven=true;}}
+  else{res.textContent=`${correct}/5 bonnes réponses.`;res.style.background='#fff0f0';res.style.color='#c0392b';}
+}
+
+// ═══════════════════ ACCORDION ═══════════════════
+function toggleAcc(header){
+  const item=header.closest('.acc-item');const wasOpen=item.classList.contains('open');
+  document.querySelectorAll('.acc-item.open').forEach(i=>i.classList.remove('open'));
+  if(!wasOpen)item.classList.add('open');
+}
+
+// ═══════════════════ FINAL SCORE ═══════════════════
+function showFinalScore(){
+  document.getElementById('final-num').textContent=stars;
+  const max=9;
+  document.getElementById('final-stars').textContent='⭐'.repeat(Math.min(stars,max))+'☆'.repeat(Math.max(0,max-stars));
+  let title,msg;
+  if(stars>=8){title='Tu es un expert de l\'Europe ! 🏆';msg='Impressionnant ! Tu as tout réussi. Tu pourrais devenir eurodéputé·e !';confetti();}
+  else if(stars>=5){title='Très bien joué ! 👏';msg='Tu maîtrises bien les institutions et l\'histoire de l\'UE !';}
+  else if(stars>=3){title='Bien joué ! 💪';msg='Tu as les bases. Recommence les jeux pour améliorer ton score !';}
+  else{title='Continue comme ça ! 🌱';msg='L\'Europe est complexe, mais tu as le temps. Recommence pour progresser !';}
+  document.getElementById('final-title').textContent=title;
+  document.getElementById('final-msg').textContent=msg;
+}
+
+function restartAll(){
+  stars=0;revealedCount=0;matchSelected=null;matchCount=0;
+  Object.keys(quizAnswered).forEach(k=>quizAnswered[k]=false);
+  tfAnswered=0;tfCorrect=0;tfStarGiven=false;diceStarGiven=false;
+  blanksStarGiven=false;
+  document.querySelectorAll('.tf-stmt').forEach(s=>{delete s.dataset.done;s.classList.remove('correct-stmt','wrong-stmt');});
+  document.querySelectorAll('.tf-btn').forEach(b=>{b.disabled=false;b.classList.remove('selected');});
+  document.getElementById('tf-result').style.display='none';
+  document.querySelectorAll('.blank').forEach(b=>{b.textContent='___';b.dataset.filled='';b.classList.remove('filled-correct','filled-wrong');});
+  document.querySelectorAll('.word-chip').forEach(c=>{c.classList.remove('used');c.style.outline='none';});
+  document.getElementById('blanks-result').style.display='none';
+  document.querySelectorAll('.frise-step.open').forEach(s=>s.classList.remove('open'));
+  goToSlide(1);
+}
+
+function confetti(){
+  const colors=['#FFD700','#003F87','#FF6B6B','#4DD9AC','#4FC3F7','#FF8C42'];
+  for(let i=0;i<70;i++){
+    const el=document.createElement('div');el.className='confetti-piece';
+    el.style.left=Math.random()*100+'vw';el.style.background=colors[Math.floor(Math.random()*colors.length)];
+    el.style.borderRadius=Math.random()>.5?'50%':'2px';el.style.width=el.style.height=(8+Math.random()*8)+'px';
+    el.style.animationDuration=(2+Math.random()*3)+'s';el.style.animationDelay=Math.random()*1.5+'s';
+    document.body.appendChild(el);setTimeout(()=>el.remove(),5500);
+  }
+}
+
+updateUI();
+</script>
+</body>
+</html>
